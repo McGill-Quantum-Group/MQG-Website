@@ -1,14 +1,15 @@
 import { state, useState, useRef, useEffect } from "react";
 import { useFrame, Canvas, useThree } from "@react-three/fiber";
 // import useMousePosition from "./mouseListener";
-import useWindowDimensions from "./resizeListener";
-import useMousePosition from "./mouseListener";
+import useWindowDimensions from "./listeners/resizeListener";
+import useMousePosition from "./listeners/mouseListener";
 import * as THREE from "three";
 
 function Plane(props) {
   // This reference will give us direct access to the mesh
   const [scale, setScale] = useState(0.32);
   const [scaleDirection, setScaleDirection] = useState(1);
+  const [theta, setTheta] = useState(0);
 
   // Initial state for the geometry - prevents high reinitialization memory use
   const geometryRef = useRef();
@@ -24,17 +25,13 @@ function Plane(props) {
   useFrame((state, delta) => {
     if (!geometryRef.current) return;
 
-    const step = delta * scaleDirection * 0.15;
-    setScale(scale + step);
-    if (scale >= 1.5) {
-      setScaleDirection(-1);
-    }
-    if (scale <= 0.3) {
-      setScaleDirection(1);
-    }
+    // const step = delta * scaleDirection * 0.15;
+    setTheta(theta + delta * 0.1);
+    setScale(3 * (Math.sin(theta) + 1.5) * 0.15);
+    // setScale(35);
 
     // Strange bug where the scale scales infinitely? Some correction against that
-    if (scale >= 3 || scale <= 0) {
+    if (scale >= 5 || scale <= 0) {
       setScale(0.32);
     }
 
@@ -77,7 +74,7 @@ function Plane(props) {
     const indices = [];
 
     const resolution = 100; // Number of points along each axis
-    const range = 100; // Range for x and y
+    const range = 50; // Range for x and y
 
     for (let i = 0; i <= resolution; i++) {
       for (let j = 0; j <= resolution; j++) {

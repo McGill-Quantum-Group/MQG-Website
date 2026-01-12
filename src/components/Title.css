@@ -1,0 +1,23 @@
+.text {
+  color: rgb(238, 238, 238);
+  font-size: 3rem;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: sticky;
+  text-shadow: 2px 2px #000000ff;
+}
+
+.animate {
+  animation: fade-in 1.5s forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

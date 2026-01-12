@@ -6,6 +6,7 @@
   border-radius: 5px; /* Rounded corners */
   margin: 15px; /* Space between cards in a grid */
   background: linear-gradient(to right, #ff7e5f, #feb47b);
+  opacity: 0;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -18,7 +19,22 @@
   padding: 2px 16px;
 }
 
+.animate {
+  animation: fade-in 1.5s forwards;
+}
+
 /* Ensure images fit nicely within the card with rounded corners at the top */
 img {
   border-radius: 5px 5px 0 0;
+}
+
+@keyframes fade-in {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0%);
+    opacity: 1;
+  }
 }

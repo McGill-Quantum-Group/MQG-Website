@@ -1,0 +1,46 @@
+.eventCard {
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  width: 70vw; /* Adjust width as needed */
+  margin: 15px; /* Space between cards in a grid */
+  border-radius: 10px;
+  background: linear-gradient(to right, #b03c61, #ff8484);
+  position: relative;
+  justify-self: center;
+  display: flex;
+  justify-content: space-between;
+  opacity: 0;
+  z-index: 1;
+}
+
+/* On mouse-over, add a deeper shadow */
+.eventCard:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 20px rgb(255, 54, 54);
+}
+
+.eventInfo {
+  position: absolute;
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.95);
+  justify-content: space-between;
+  justify-self: center;
+}
+
+.animate {
+  animation: fade-in 1.5s forwards;
+}
+
+/* Ensure images fit nicely within the card with rounded corners at the top */
+img {
+  border-radius: 5px 5px 0 0;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

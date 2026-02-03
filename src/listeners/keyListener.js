@@ -27,10 +27,9 @@ function KeyboardListener() {
         currentKeyIndex = 0;
       }
       if (currentKeyIndex == targetSequence.length) {
+        alert("Quantum mode activated!");
         currentKeyIndex = 0;
       }
-      console.log(currentKeyIndex);
-      console.log(e);
     };
 
     document.addEventListener("keydown", handleKeyDown);

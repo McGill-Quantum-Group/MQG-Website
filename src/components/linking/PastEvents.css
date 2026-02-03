@@ -1,3 +1,18 @@
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px); /* Safari support */
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .eventCard {
   /* Add shadows to create the "card" effect */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -20,15 +35,39 @@
 }
 
 .eventInfo {
-  position: absolute;
-  z-index: 10;
+  position: relative;
+  z-index: 40;
   background-color: rgba(255, 255, 255, 0.95);
   justify-content: space-between;
   justify-self: center;
+  max-width: 85vw;
+  padding: 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  max-height: 100vh;
+  overflow-y: auto;
 }
 
-.animate {
+.eventImage {
+  width: auto;
+  max-width: 100%;
+  height: 200px;
+  padding: 5px;
+}
+
+.eventInfo > div:last-child {
+  display: flex;
+  flex-wrap: wrap; /* Allows images to drop to the next line */
+  gap: 10px;
+  justify-content: left;
+}
+
+.animateEventCard {
   animation: fade-in 1.5s forwards;
+}
+
+.animateModal {
+  animation: fade-in 0.5s;
 }
 
 /* Ensure images fit nicely within the card with rounded corners at the top */

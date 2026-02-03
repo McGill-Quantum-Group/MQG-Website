@@ -1,0 +1,108 @@
+.react-calendar__navigation {
+  display: flex;
+
+  .react-calendar__navigation__label {
+    font-weight: bold;
+  }
+
+  .react-calendar__navigation__arrow {
+    flex-grow: 0.1;
+  }
+}
+.react-calendar__month-view__weekdays {
+  color: white;
+  text-align: center;
+}
+
+/* ~~~ button styles ~~~ */
+.react-calendar__tile {
+  margin: 3px;
+  background-color: #ff6b58de;
+  border: 0;
+  border-radius: 3px;
+  color: white;
+  padding: 5px 0;
+  width: 12.5vw;
+  height: 5.5vw;
+  aspect-ratio: 1;
+  display: flex;
+  overflow-y: auto;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 5px;
+  box-sizing: border-box;
+}
+.react-calendar__navigation button {
+  min-width: 44px;
+  background: none;
+  background-color: #dbbfa5;
+  font-size: 16px;
+  margin-top: 8px;
+}
+
+/* ~~~ day grid styles ~~~ */
+.react-calendar__month-view__days {
+  display: grid !important;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 2px;
+  background-color: rgba(62, 62, 62, 0.848);
+
+  .react-calendar__tile {
+    max-width: initial !important;
+  }
+}
+
+/* ~~~ neighboring month & weekend styles ~~~ */
+.react-calendar__month-view__days__day--neighboringMonth {
+  opacity: 0.7;
+}
+.react-calendar__month-view__days__day--weekend {
+  color: #dfdfdf;
+}
+
+/* All other views */
+.react-calendar__year-view__months,
+.react-calendar__decade-view__years,
+.react-calendar__century-view__decades {
+  display: grid !important;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+
+  &.react-calendar__year-view__months {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+  }
+
+  .react-calendar__tile {
+    max-width: initial !important;
+  }
+}
+
+.event-button {
+  background-color: #007bff;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.event-button:hover {
+  cursor: pointer;
+}
+
+.loader {
+  border: 16px solid #f3f3f3; /* Light grey background */
+  border-top: 16px solid #3498db; /* Blue top border (the "spinner" part) */
+  border-radius: 50%; /* Makes the element a circle */
+  width: 120px;
+  height: 120px;
+  justify-self: center;
+  animation: spin 2s linear infinite; /* Apply the animation */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

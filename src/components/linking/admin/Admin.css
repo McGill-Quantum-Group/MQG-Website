@@ -1,0 +1,26 @@
+.adminModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.adminPage {
+  /* Add shadows to create the "card" effect */
+  z-index: 40;
+  background-color: #c7c7c7;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.adminText {
+  font-size: large;
+}

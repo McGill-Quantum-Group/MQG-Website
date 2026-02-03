@@ -1,0 +1,59 @@
+.loginModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #c7c7c7de;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loginPage {
+  z-index: 40;
+  background-image: linear-gradient(rgb(183, 52, 52), rgba(82, 82, 82, 0.437));
+  width: 100vw;
+  height: 100vh;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: grid;
+  place-items: center;
+}
+
+.loginText {
+  font-size: x-large;
+  color: white;
+  font-family: "Roboto", sans-serif;
+}
+
+.buttonLogin {
+  font-size: 16px;
+  background-color: #ca3232;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+}
+
+.buttonLogin:hover {
+  background-color: #8e2424;
+}
+
+.animateLogin {
+  animation: fade-in 0.5s;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

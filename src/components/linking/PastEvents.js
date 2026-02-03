@@ -1,120 +1,80 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import "./PastEvents.css";
+import EventCard from "./EventCard";
+import { supabase } from "../supabaseConfig";
 
 import mqgLogo from "../images/MQG.webp";
 
-function EventCard({ events }) {
+function EventsPage(props) {
   const [startFade, setStartFade] = useState(false);
-  const [showEvent, setShowEvent] = useState(false);
-  const [allEventInfo, setAllEventInfo] = useState("");
+  const [events, setEvents] = useState([]);
+  const [loaded, setLoaded] = useState(false);
+  // {
+  //   name: "QiSkit Fall Fest",
+  //   info: "Our first run of a quantum hackathon! Pre-event workshops were lead before to ensure that people could start building right away the day of.",
+  //   image: mqgLogo,
+  //   longInfo: {
+  //     title: "QiSkit Fall Fest",
+  //     description: "We love to hack",
+  //     images: [mqgLogo, mqgLogo],
+  //   },
+  // },
 
   useEffect(() => {
-    setStartFade(true);
+    const fetchEvents = async () => {
+      setLoaded(false);
+      const { data, error } = await supabase
+        .from("events-past")
+        .select("*")
+        .order("date");
+      if (error) {
+        console.log(error);
+      } else {
+        let eventData = [];
+        for (let i = 0; i < data.length; i++) {
+          const e = data[i];
+          eventData.push({
+            name: e.title,
+            info: e.short_description,
+            image: e.spotlight_image,
+            longInfo: {
+              title: e.post_title,
+              description: e.description,
+              images: e.images,
+            },
+          });
+        }
+        setEvents(eventData);
+        setLoaded(true);
+      }
+    };
+
+    fetchEvents();
   }, []);
 
   return (
-    <div>
-      {/* Render all info if the user clicks */}
-      {showEvent ? (
-        <div className="eventInfo">
-          <div
-            style={{
-              position: "relative",
-              display: "flex",
-              justifyContent: "space-between",
-            }}
-          >
-            <h1>{allEventInfo.title}</h1>
-            <button
-              style={{
-                position: "relative",
-                textAlign: "right",
-              }}
-              onClick={() => {
-                setShowEvent(false);
-                setAllEventInfo("");
-              }}
-            >
-              <h1>❌</h1>
-            </button>
-          </div>
-          <p>{allEventInfo.description}</p>
-          <div style={{ display: "flex" }}>
-            {allEventInfo.images.map((img) => (
-              <img src={img}></img>
-            ))}
-          </div>
-        </div>
+    <div style={{ overflowY: "auto" }}>
+      {loaded ? (
+        <EventCard events={events} />
       ) : (
-        <div></div>
-      )}
-      {events.map((event) => (
-        <button
-          className={`${startFade ? "eventCard animate" : "eventCard"}`}
-          onClick={() => {
-            setShowEvent(true);
-            setAllEventInfo(event.longInfo);
+        <div
+          style={{
+            display: "grid",
+            placeItems: "center",
+            height: "90vh",
           }}
         >
-          <div
-            style={{
-              margin: "5px",
-              flex: 1,
-            }}
-          >
-            <h1>{event.name}</h1>
-            <br />
-            {event.info}
+          <div style={{ textAlign: "center" }}>
+            <div className="loader spin" />
+            <h1
+              style={{ color: "white", marginTop: "20px", marginBottom: "0px" }}
+            >
+              Loading, please wait...
+            </h1>
           </div>
-          <img
-            src={mqgLogo}
-            style={{ width: "200px", justifyContent: "right" }}
-          />
-        </button>
-      ))}
-    </div>
-  );
-}
-
-function EventsPage(props) {
-  const [startFade, setStartFade] = useState(false);
-  const events = [
-    {
-      name: "QiSkit Fall Fest",
-      info: "Our first run of a quantum hackathon! Pre-event workshops were lead before to ensure that people could start building right away the day of.",
-      image: mqgLogo,
-      longInfo: {
-        title: "QiSkit Fall Fest",
-        description: "We love to hack",
-        images: [mqgLogo, mqgLogo],
-      },
-    },
-    {
-      name: "A",
-      info: "what the hell is this event smh smh smh smh",
-      image: mqgLogo,
-    },
-    {
-      name: "A",
-      info: "what the hell is this event smh smh smh smh",
-      image: mqgLogo,
-    },
-    {
-      name: "A",
-      info: "what the hell is this event smh smh smh smh",
-      image: mqgLogo,
-    },
-    {
-      name: "A",
-      info: "what the hell is this event smh smh smh smh",
-      image: mqgLogo,
-    },
-  ];
-
-  return (
-    <div style={{ overflowY: "auto" }}>
-      <EventCard events={events} />
+        </div>
+      )}
     </div>
   );
 }

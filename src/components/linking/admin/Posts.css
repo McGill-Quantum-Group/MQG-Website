@@ -1,0 +1,22 @@
+.adminModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #ffffff;
+  z-index: 30;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+}
+
+.postContainer {
+  /* Add shadows to create the "card" effect */
+  z-index: 40;
+  width: 95vw;
+  min-height: 90vh;
+  position: relative;
+  overflow: visible;
+}

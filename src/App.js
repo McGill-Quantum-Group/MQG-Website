@@ -1,17 +1,9 @@
-import logo from "./logo.svg";
 import Plane from "./3d";
 import { Canvas, useFrame } from "@react-three/fiber";
-import { Html, Grid } from "@react-three/drei";
-import Cards from "./components/Cards";
 import TitleBar from "./components/TitleBar";
-import Title from "./components/Title";
 import "./App.css";
-import useMousePosition from "./listeners/mouseListener";
 import KeyboardListener from "./listeners/keyListener";
-import { AuthContextProvider } from "./components/linking/auth/authContext";
-import { BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "./components/linking/auth/AuthProvider";
-import { EffectComposer, DepthOfField } from "@react-three/postprocessing";
 
 function App() {
   KeyboardListener(); // If you're reading this code! Be relieved, this is not a keylogger (thats illegal!!) - but it is related to a cool easter egg, see if you can find it :)

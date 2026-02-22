@@ -6,12 +6,13 @@ import mqgLogo from "../images/MQG.webp";
 
 function InformationPictures({ infoDict }) {
   return (
-    <div style={{ display: "flex", gap: "20px" }}>
-      {infoDict.map((info) => (
-        <div>
+    <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
+      {infoDict.map((info, index) => (
+        <div key={index}>
           <img
             style={{ borderRadius: "50%", width: "200px" }}
             src={info.image}
+            alt={`Exec #${index}`}
           />
           <p
             style={{

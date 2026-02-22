@@ -23,15 +23,17 @@
   color: white;
   padding: 5px 0;
   width: 12.5vw;
-  height: 5.5vw;
-  aspect-ratio: 1;
+
+  min-height: 10.5vh; /* Keeps empty days at a decent base size */
+  max-height: 14vh; /* Stops growing here and activates the scrollbar */
+
   display: flex;
-  overflow-y: auto;
   align-items: flex-start;
   flex-direction: column;
   gap: 5px;
   box-sizing: border-box;
 }
+
 .react-calendar__navigation button {
   min-width: 44px;
   background: none;
@@ -77,8 +79,30 @@
   }
 }
 
+/* Custom Scrollbar */
+.schedule-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.schedule-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.schedule-scrollbar::-webkit-scrollbar-button {
+  display: none;
+}
+
+.schedule-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-radius: 10px;
+}
+
+.schedule-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
 .event-button {
-  background-color: #007bff;
+  background-color: #4ca3ff;
   color: white;
   padding: 5px;
   border-radius: 5px;

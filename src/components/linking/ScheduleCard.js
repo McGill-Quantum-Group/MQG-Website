@@ -38,6 +38,8 @@ function ScheduleCard({ event }) {
             style={{
               position: "relative",
               textAlign: "right",
+              border: "none",
+              backgroundColor: "#ca323200",
             }}
             onClick={() => {
               setShowEvent(false);

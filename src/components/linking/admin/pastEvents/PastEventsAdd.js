@@ -1,11 +1,12 @@
-import { useState } from "react";
-import "./Posts.css";
+import { useState, useEffect, useRef } from "react";
+import "../Posts.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-import { supabase } from "../../supabaseConfig";
+import { secureImageUpload, secureDbRequest } from "../AdminUtils";
+import { useNavigate } from "react-router-dom";
 
-function Schedule() {
+function PastEventsAdd({ operation = "insert", data }) {
   const [title, setTitle] = useState("");
   const [date, setDate] = useState(new Date());
   const [location, setLocation] = useState("");
@@ -15,16 +16,34 @@ function Schedule() {
   const [postTitle, setPostTitle] = useState("");
   const [sameTitleChecked, setSameTitleChecked] = useState(false);
   const [shortDescription, setShortDescription] = useState("");
+  const [prevImageUrls, setPrevImageUrls] = useState([]);
+  const fileInputRef = useRef("");
   const [isUploading, setIsUploading] = useState(false);
+  const maxSize = 5 * 1024 * 1024;
+
+  const navigate = useNavigate();
 
   const handleImageChange = (e) => {
     // Convert FileList to an array
     if (e.target.files) {
-      setImageFiles(Array.from(e.target.files));
+      const files = Array.from(e.target.files);
+      const oversized = files.find((file) => file.size > maxSize);
+      if (oversized) {
+        alert(`File ${oversized.name} is too large!`);
+        e.target.value = null;
+        return;
+      }
+      setImageFiles(files);
     }
   };
 
   const handleSpotlightImageChange = (e) => {
+    if (e.target.files[0].size > maxSize) {
+      alert(`File ${e.target.files[0].name} is too large!`);
+      e.target.value = null;
+      return;
+    }
+
     if (e.target.files && e.target.files[0]) {
       setSpotlightImage(e.target.files[0]);
     }
@@ -36,78 +55,82 @@ function Schedule() {
   };
 
   const uploadImage = async (file) => {
-    const filePath = `events-past/${Date.now()}_${file.name}`;
-
-    // Upload data
-    const { data, error } = await supabase.storage
-      .from("past-events-images")
-      .upload(filePath, file);
-
-    if (error) throw error;
-
-    // Public URL
-    const { data: urlData } = supabase.storage
-      .from("past-events-images")
-      .getPublicUrl(filePath);
-
-    return urlData.publicUrl;
+    // Pass the File object so the actual image bytes are uploaded (not the path string)
+    return await secureImageUpload("past-events-images", "events-past", file);
   };
 
   const uploadThumbnail = async (file) => {
-    const filePath = `events-past/${Date.now()}_${file.name}`;
+    // Pass the File object so the actual image bytes are uploaded (not the path string)
+    if (isValidUrl(file)) {
+      return;
+    }
+    return await secureImageUpload(
+      "past-events-thumbnails",
+      "events-past",
+      file,
+    );
+  };
 
-    // Upload data
-    const { data, error } = await supabase.storage
-      .from("past-events-thumbnails")
-      .upload(filePath, file);
-
-    if (error) throw error;
-
-    // Public URL
-    const { data: urlData } = supabase.storage
-      .from("past-events-thumbnails")
-      .getPublicUrl(filePath);
-
-    return urlData.publicUrl;
+  const isValidUrl = (url) => {
+    try {
+      new URL(url);
+      return true;
+    } catch (err) {
+      return false;
+    }
   };
 
   const submitToDatabase = async () => {
-    if (!title || !date || !spotlightImage || !postTitle)
+    const finalPostTitle = sameTitleChecked || !postTitle ? title : postTitle;
+
+    if (!title || !date || !spotlightImage)
       return alert(
         "Essential information missing! Please fill out all required (*) fields.",
       );
     setIsUploading(true);
 
     try {
-      if (sameTitleChecked || postTitle == "" || postTitle == null) {
-        setPostTitle(title);
-      }
-
-      const imageUrls = await Promise.all(
+      const newImageUrls = await Promise.all(
         imageFiles.map((file) => uploadImage(file)),
       );
 
+      const imageUrls = [...newImageUrls, ...prevImageUrls];
       const thumbnailUrl = await uploadThumbnail(spotlightImage);
 
-      const { error } = await supabase.from("events-past").insert([
-        {
-          title: title,
-          short_description: shortDescription,
-          post_title: postTitle,
-          date: date,
-          location: location,
-          spotlight_image: thumbnailUrl,
-          description: description,
-          images: imageUrls,
-        },
-      ]);
+      const payload = {
+        title: title,
+        short_description: shortDescription,
+        post_title: finalPostTitle,
+        date: date,
+        location: location,
+        spotlight_image: thumbnailUrl,
+        description: description,
+        images: imageUrls,
+      };
 
-      if (error) throw error;
-      alert("Event published on schedule!");
-      // Reset form
-      setTitle("");
-      setDescription("");
-      setImageFiles([]);
+      if (operation === "update") {
+        payload.id = data.id;
+      }
+
+      await secureDbRequest(operation, "events-past", payload);
+
+      if (operation === "update") {
+        alert("Event updated on schedule!");
+        navigate("admin/past-events");
+      } else {
+        alert("Event created on schedule!");
+        setTitle("");
+        setDate(new Date()); // Convert string to Date object
+        setLocation("");
+        setDescription("");
+        setPrevImageUrls([]);
+        setShortDescription("");
+        setPostTitle("");
+        setSpotlightImage("");
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+      }
     } catch (error) {
       console.error("Error adding document: ", error);
       alert("Error uploading event");
@@ -116,16 +139,32 @@ function Schedule() {
     }
   };
 
+  useEffect(() => {
+    if (operation === "update" && data) {
+      console.log(data);
+      setTitle(data.title || "");
+      setDate(new Date(data.date)); // Convert string to Date object
+      setLocation(data.location || "");
+      setDescription(data.description || "");
+      setPrevImageUrls(data.images || []);
+      setShortDescription(data.short_description);
+      setPostTitle(data.post_title);
+      setSpotlightImage(data.spotlight_image);
+    }
+  }, [operation, data]);
+
   return (
     <div className="adminModalOverlay">
       <div className="postContainer">
-        <h1>Add a event to past events</h1>
+        <h1>
+          Past events: {operation === "update" ? "Update" : "Add"} an event
+        </h1>
         <h2 style={{ fontWeight: "bold" }}>Shows in thumbnail</h2>
         <div>
           <form>
             <label style={{ fontSize: "large", marginRight: "10px" }}>
               {" "}
-              Event Title:
+              Event Title (*):
             </label>
             <input
               type="text"
@@ -140,7 +179,7 @@ function Schedule() {
             <br />
             <label style={{ fontSize: "large", marginRight: "10px" }}>
               {" "}
-              Event Short Description:
+              Event Short Description (*):
             </label>
             <input
               type="text"
@@ -155,7 +194,7 @@ function Schedule() {
             <br />
             <label style={{ fontSize: "large", marginRight: "10px" }}>
               {" "}
-              Event date:
+              Event date (*):
             </label>
             <DatePicker
               selected={date}
@@ -182,7 +221,7 @@ function Schedule() {
             <br />
             <label style={{ fontSize: "large", marginRight: "10px" }}>
               {" "}
-              Spotlight image:
+              Spotlight image (*) - Max 5 MB:
             </label>
             <br />
             <input
@@ -190,6 +229,19 @@ function Schedule() {
               accept="image/*"
               onChange={handleSpotlightImageChange}
             />
+            {operation === "update" ? (
+              <div>
+                Previous spotlight image
+                <br />
+                <img
+                  style={{ width: "200px" }}
+                  src={spotlightImage}
+                  alt="Previous spotlight image"
+                />
+              </div>
+            ) : (
+              <div />
+            )}
           </form>
         </div>
         <br />
@@ -197,12 +249,13 @@ function Schedule() {
           Shows on click
         </h2>
         <form>
-          <label style={{ fontSize: "large" }}> Event Title in Post:</label>
+          <label style={{ fontSize: "large" }}> Event Title in Post (*):</label>
           <br />
           <input
             type="text"
             id="postTitle"
             name="postTitle"
+            disabled={sameTitleChecked}
             value={postTitle}
             onChange={(e) => {
               setPostTitle(e.target.value);
@@ -232,6 +285,7 @@ function Schedule() {
             name="description"
             rows="4"
             cols="50"
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
           <br />
@@ -241,8 +295,35 @@ function Schedule() {
             type="file"
             multiple
             accept="image/*"
-            onChange={(e) => setImageFiles(Array.from(e.target.files))}
+            onChange={(e) => handleImageChange(e)}
           />
+          {operation === "update" ? (
+            <div>
+              Images already uploaded:
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "row",
+                  flexWrap: "wrap",
+                  overflowX: "auto",
+                }}
+              >
+                {prevImageUrls.map((image, index) => (
+                  <img
+                    key={index}
+                    style={{
+                      width: "75px",
+                      padding: "5px",
+                    }}
+                    src={image}
+                    alt={`Uploaded ${index}`}
+                  />
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div />
+          )}
         </form>
         <br />
         <button
@@ -256,4 +337,4 @@ function Schedule() {
   );
 }
 
-export default Schedule;
+export default PastEventsAdd;

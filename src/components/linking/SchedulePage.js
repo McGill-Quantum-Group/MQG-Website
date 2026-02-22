@@ -8,13 +8,12 @@ function SchedulePage() {
   const [events, setEvents] = useState([]);
   const [loaded, setLoaded] = useState(false);
 
-  const [startFade, setStartFade] = useState(false);
   const [showEvent, setShowEvent] = useState(false);
   const [allEventInfo, setAllEventInfo] = useState("");
 
-  const handleOpenModal = (event) => {
-    //
-  };
+  // const handleOpenModal = (event) => {
+  //   //
+  // };
 
   const handleCloseModal = () => {
     setShowEvent(false);
@@ -22,12 +21,12 @@ function SchedulePage() {
   };
 
   const handleModalRender = (e) => {
-    console.log(e.images);
     const scheduleEvent = {
       title: e.title,
       description: e.description,
       images: e.images,
       location: e.location,
+      date: e.date,
     };
     setAllEventInfo(scheduleEvent);
     setShowEvent(true);
@@ -43,7 +42,6 @@ function SchedulePage() {
       if (error) {
         console.log(error);
       } else {
-        console.log(data);
         setEvents(data);
         setLoaded(true);
       }
@@ -54,10 +52,9 @@ function SchedulePage() {
 
   const isSameDay = (d1, d2) => {
     return (
-      // UTC conversion bc the thing keeps breaking for no reason
-      d1.getUTCFullYear() === d2.getFullYear() &&
-      d1.getUTCMonth() === d2.getMonth() &&
-      d1.getUTCDate() === d2.getDate()
+      d1.getFullYear() === d2.getFullYear() &&
+      d1.getMonth() === d2.getMonth() &&
+      d1.getDate() === d2.getDate()
     );
   };
 
@@ -70,19 +67,32 @@ function SchedulePage() {
       // If found, return JSX to display
       if (dayEvents.length > 0) {
         return (
-          <div>
-            {/* Example: A small dot or the event title */}
+          <div
+            className="schedule-scrollbar"
+            style={{
+              maxHeight: "14vh",
+              overflowY: "auto",
+              display: "flex",
+              flexDirection: "column",
+              gap: "4px",
+              width: "100%",
+              paddingRight: "2px",
+            }}
+            onWheel={(e) => e.stopPropagation()}
+          >
             {dayEvents.map((dayEvent, index) => (
-              <div style={{ position: "relative" }}>
-                <button
-                  onClick={() => {
+              <div key={index} style={{ position: "relative" }}>
+                <div
+                  onClick={(e) => {
+                    e.stopPropagation();
                     handleModalRender(dayEvent);
                     console.log(dayEvent);
                   }}
                   className="event-button"
+                  style={{ cursor: "pointer" }}
                 >
                   {dayEvent.title}
-                </button>
+                </div>
               </div>
             ))}
           </div>

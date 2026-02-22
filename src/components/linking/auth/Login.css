@@ -16,12 +16,17 @@
   background-image: linear-gradient(rgb(183, 52, 52), rgba(82, 82, 82, 0.437));
   width: 100vw;
   height: 100vh;
-  padding-left: 30px;
-  padding-right: 30px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  display: grid;
-  place-items: center;
+
+  /* Switch to Flexbox to center the form */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Create an anchor point for the absolute positioned X */
+  position: relative;
+
+  /* Force padding to stay inside the 100vh limit */
+  box-sizing: border-box;
 }
 
 .loginText {

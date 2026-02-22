@@ -1,0 +1,12 @@
+.buttonIcon {
+  background-color: #ca323200;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-family: "Roboto", sans-serif;
+}
+
+.buttonIcon:hover {
+  cursor: pointer;
+  background-color: #ca323228;
+}

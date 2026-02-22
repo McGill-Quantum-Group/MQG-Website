@@ -4,10 +4,7 @@ import "./PastEvents.css";
 import EventCard from "./EventCard";
 import { supabase } from "../supabaseConfig";
 
-import mqgLogo from "../images/MQG.webp";
-
-function EventsPage(props) {
-  const [startFade, setStartFade] = useState(false);
+function ResourcesPage(props) {
   const [events, setEvents] = useState([]);
   const [loaded, setLoaded] = useState(false);
   // {
@@ -25,7 +22,7 @@ function EventsPage(props) {
     const fetchEvents = async () => {
       setLoaded(false);
       const { data, error } = await supabase
-        .from("events-past")
+        .from("resources")
         .select("*")
         .order("date");
       if (error) {
@@ -42,6 +39,9 @@ function EventsPage(props) {
               title: e.post_title,
               description: e.description,
               images: e.images ?? [],
+              extras: e.extras,
+              location: e.location,
+              date: e.date,
             },
           });
         }
@@ -56,7 +56,23 @@ function EventsPage(props) {
   return (
     <div style={{ overflowY: "auto" }}>
       {loaded ? (
-        <EventCard events={events} />
+        events.length !== 0 ? (
+          <EventCard events={events} />
+        ) : (
+          <div style={{ textAlign: "center" }}>
+            <h1
+              style={{ color: "white", marginTop: "20px", marginBottom: "0px" }}
+            >
+              Nothing to see here yet!
+            </h1>
+            <h2
+              style={{ color: "white", marginTop: "20px", marginBottom: "0px" }}
+            >
+              Come back when its not midterm season. We might be a little less
+              lazy...
+            </h2>
+          </div>
+        )
       ) : (
         <div
           style={{
@@ -79,4 +95,4 @@ function EventsPage(props) {
   );
 }
 
-export default EventsPage;
+export default ResourcesPage;

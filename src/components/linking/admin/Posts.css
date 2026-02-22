@@ -2,21 +2,18 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
+  right: 0;
+  bottom: 0;
   background-color: #ffffff;
-  z-index: 30;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-y: auto;
+  z-index: 1000;
+  overflow-y: scroll; /* Force the scrollbar to exist */
+  display: block; /* Absolutely no flexbox here */
+  align-self: center;
 }
 
 .postContainer {
-  /* Add shadows to create the "card" effect */
-  z-index: 40;
   width: 95vw;
-  min-height: 90vh;
+  margin: 40px auto; /* 40px space at the top, horizontally centered */
+  padding-bottom: 100px; /* Brute-force space at the bottom so the button never clips */
   position: relative;
-  overflow: visible;
 }

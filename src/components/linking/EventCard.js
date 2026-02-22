@@ -3,8 +3,6 @@ import { useEffect } from "react";
 import "./PastEvents.css";
 import EventModal from "./EventModal";
 
-import mqgLogo from "../images/MQG.webp";
-
 function EventCard({ events }) {
   const [startFade, setStartFade] = useState(false);
   const [showEvent, setShowEvent] = useState(false);
@@ -14,10 +12,10 @@ function EventCard({ events }) {
     setStartFade(true);
   }, []);
 
-  const handleOpenModal = (event) => {
-    setAllEventInfo(event.longInfo);
-    setShowEvent(true);
-  };
+  // const handleOpenModal = (event) => {
+  //   setAllEventInfo(event.longInfo);
+  //   setShowEvent(true);
+  // };
 
   const handleCloseModal = () => {
     setShowEvent(false);
@@ -35,13 +33,14 @@ function EventCard({ events }) {
       ) : (
         <div></div>
       )}
-      {events.map((event) => (
+      {events.map((event, index) => (
         <button
           className={`${startFade ? "eventCard animateEventCard" : "eventCard"}`}
           onClick={() => {
             setShowEvent(true);
             setAllEventInfo(event.longInfo);
           }}
+          key="index"
         >
           <div
             style={{

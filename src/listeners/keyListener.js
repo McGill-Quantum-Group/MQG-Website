@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 function KeyboardListener() {
   const targetSequence = [
@@ -19,14 +19,13 @@ function KeyboardListener() {
 
     const handleKeyDown = (e) => {
       const key = e.key;
-      console.log(key == targetSequence[currentKeyIndex]);
       // Drop physics 2 if a specific sequence is hit
-      if (key == targetSequence[currentKeyIndex]) {
+      if (key === targetSequence[currentKeyIndex]) {
         currentKeyIndex += 1;
       } else {
         currentKeyIndex = 0;
       }
-      if (currentKeyIndex == targetSequence.length) {
+      if (currentKeyIndex === targetSequence.length) {
         alert("Quantum mode activated!");
         currentKeyIndex = 0;
       }

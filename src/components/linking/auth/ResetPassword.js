@@ -5,9 +5,6 @@ import { X } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 import { auth } from "./firebaseConfig";
-import { useAuth } from "./authContext";
-import { GoogleAuthProvider } from "firebase/auth";
-import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 function ResetPassword() {

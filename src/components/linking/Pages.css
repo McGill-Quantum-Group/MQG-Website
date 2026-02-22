@@ -3,10 +3,14 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
   width: auto; /* Adjust width as needed */
-  margin-left: 15px; /* Space between cards in a grid */
-  margin-right: 15px;
+  margin: 10px 15px 10px 15px;
   background: linear-gradient(to right, #ff5a57, #ca9a9a);
+  border-radius: 10px;
   opacity: 0;
+}
+
+.container {
+  padding: 5px 10px;
 }
 
 /* On mouse-over, add a deeper shadow */
@@ -14,8 +18,8 @@
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.animate {
-  animation: fade-in 1.5s forwards;
+.animateCard {
+  animation: translate-and-fade 1s forwards;
 }
 
 /* Ensure images fit nicely within the card with rounded corners at the top */
@@ -23,7 +27,7 @@ img {
   border-radius: 5px 5px 0 0;
 }
 
-@keyframes fade-in {
+@keyframes translate-and-fade {
   0% {
     transform: translateY(100%);
     opacity: 0;

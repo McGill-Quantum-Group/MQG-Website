@@ -20,7 +20,7 @@ function Title(props) {
           We are the McGill Quantum Group. Take a look around...
         </p>
       </div>
-      <div
+      <a
         className={`${startFade ? "animate" : ""}`}
         style={{
           position: "absolute",
@@ -30,10 +30,12 @@ function Title(props) {
           color: "white",
           textAlign: "center",
           padding: "10px",
+          textDecoration: "none",
         }}
+        href="https://github.com/McGill-Quantum-Group/MQG-Website"
       >
         Made with ❤️ using React
-      </div>
+      </a>
     </div>
   );
 }

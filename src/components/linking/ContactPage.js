@@ -13,7 +13,7 @@ function ContactPage({ title, text }) {
   }, []);
 
   return (
-    <div className={`${startFade ? "card animate" : "card"}`}>
+    <div className={`${startFade ? "card animateCard" : "card"}`}>
       <div className="container">
         <h1>
           <b>Want to contact us?</b>

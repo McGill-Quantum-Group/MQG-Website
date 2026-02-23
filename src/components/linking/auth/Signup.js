@@ -54,9 +54,7 @@ function Signup() {
       );
 
       await sendEmailVerification(result.user);
-      alert(
-        "Account created! Please check your email for a verification link.",
-      );
+      alert("Account created! You may log in now.");
       console.log("User created:", result.user);
       navigate("/", { replace: true });
     } catch (err) {

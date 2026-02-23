@@ -11,7 +11,7 @@ function App() {
     <div
       style={{
         position: "relative",
-        width: "100vw",
+        width: "100%",
         height: "100vh",
         overflow: "hidden",
         background: "radial-gradient(circle, #430b00ff, #1c001eff)",

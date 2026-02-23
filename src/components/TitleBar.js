@@ -59,34 +59,49 @@ function TitleBar(props) {
       style={pageLoaded ? { height: "100vh", backgroundColor: "black" } : {}}
     >
       <BrowserRouter>
-        <nav className={pageLoaded ? "" : "titlebar"}>
-          <Link to="/">
-            <img src={mqgLogo} width="75" />
-          </Link>
-          <Link to="/about">About Us</Link>
-          <Link to="/schedule">Schedule</Link>
-          <Link to="/past-events">Past Events</Link>
-          <Link to="/resources">Resources</Link>
-          <Link to="/contact">Contact Us</Link>
-          <a href="https://discord.gg/KY4e9BrQNe">
-            <img src={discordIcon} width="35" />
-          </a>
-          <a href="https://www.instagram.com/mcgill_quantum_group/">
-            <img src={instagramIcon} width="35" />
-          </a>
-
-          <div
+        <header className="titlebar">
+          {/* Title bar */}
+          <nav
+            className="title-scrollbar link-container"
             style={{
-              marginLeft: "auto",
+              overflowX: "auto",
+              overflowY: "hidden",
               display: "flex",
               alignItems: "center",
-              padding: "15px",
+              gap: "20px",
+              flexGrow: 1,
+              paddingLeft: "15px",
+            }}
+          >
+            <Link to="/">
+              <img src={mqgLogo} width="75" alt="logo" />
+            </Link>
+            <Link to="/about">About Us</Link>
+            <Link to="/schedule">Schedule</Link>
+            <Link to="/past-events">Past Events</Link>
+            <Link to="/resources">Resources</Link>
+            <Link to="/contact">Contact Us</Link>
+            <a href="https://discord.gg/KY4e9BrQNe">
+              <img src={discordIcon} width="35" alt="discord" />
+            </a>
+            <a href="https://www.instagram.com/mcgill_quantum_group/">
+              <img src={instagramIcon} width="35" alt="instagram" />
+            </a>
+          </nav>
+
+          {/* Profile button */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              padding: "0 15px",
+              flexShrink: 0, // Prevents squishing against the right wall
             }}
           >
             {user ? <UserIcon /> : <Link to="/login">Login</Link>}
             <Link to="/admin"></Link>
           </div>
-        </nav>
+        </header>
 
         <div>
           <Routes>

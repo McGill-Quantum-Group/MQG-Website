@@ -40,21 +40,37 @@ function EventCard({ events }) {
             setShowEvent(true);
             setAllEventInfo(event.longInfo);
           }}
-          key="index"
+          key={index}
+          style={{
+            padding: 0,
+            overflow: "hidden",
+            display: "flex",
+            textAlign: "left",
+          }}
         >
+          {/* Text Container */}
           <div
             style={{
-              margin: "5px",
+              padding: "20px",
               flex: 1,
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
             }}
           >
-            <h1>{event.name}</h1>
-            <br />
-            {event.info}
+            <h1 style={{ margin: 0 }}>{event.name}</h1>
+            <p style={{ marginTop: "10px" }}>{event.info}</p>
           </div>
+
+          {/* Image Container */}
           <img
             src={event.image}
-            style={{ width: "200px", justifyContent: "right" }}
+            alt="Event"
+            style={{
+              width: "200px",
+              height: "100%",
+              objectFit: "cover",
+            }}
           />
         </button>
       ))}

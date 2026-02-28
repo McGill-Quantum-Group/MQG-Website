@@ -164,7 +164,7 @@ const WaveMaterial = shaderMaterial(
     void main() {
       // 1. Calculate the fade correctly (edge0 < edge1)
       // At 15.0 units, fade is 0.0. At 45.0 units, fade is 1.0.
-      float fade = smoothstep(20.0, 40.0, vDist);
+      float fade = smoothstep(10.0, 20.0, vDist);
       
       // 2. Invert it mathematically
       // Center becomes 1.0 (solid), edges become 0.0 (transparent)
@@ -172,7 +172,7 @@ const WaveMaterial = shaderMaterial(
       
       gl_FragColor = vec4(uColor, alpha);
     }
-  `
+  `,
 );
 
 extend({ WaveMaterial });

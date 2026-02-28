@@ -10,14 +10,25 @@ function Title(props) {
   }, []);
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", minHeight: "90vh" }}
-    >
+    <div className="textOverlay">
       <div className={`${startFade ? "text animate" : "text"}`}>
         <p>
           <b>Hello!</b>
+        </p>
+        <p style={{ fontSize: "34px", fontWeight: "325" }}>
+          We are the McGill Quantum Group.
           <br />
-          We are the McGill Quantum Group. Take a look around...
+          Join our{" "}
+          <a
+            style={{
+              color: "#ff5d5d",
+              textDecoration: "none",
+            }}
+            href="https://discord.gg/KY4e9BrQNe"
+          >
+            Discord
+          </a>{" "}
+          to find the quickest updates.
         </p>
       </div>
       <a

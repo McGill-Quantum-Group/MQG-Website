@@ -37,8 +37,6 @@ import ResourcesDelete from "./linking/admin/resources/ResourcesDelete";
 import ResourcesRouter from "./linking/admin/resources/ResourcesRouter";
 
 import mqgLogo from "./images/mqg.png";
-import discordIcon from "./images/discord-icon.png";
-import instagramIcon from "./images/instagram-icon.png";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 function TitleBar(props) {
@@ -82,10 +80,16 @@ function TitleBar(props) {
             <Link to="/resources">Resources</Link>
             <Link to="/contact">Contact Us</Link>
             <a href="https://discord.gg/KY4e9BrQNe">
-              <img src={discordIcon} width="35" alt="discord" />
+              <i
+                className="fa-brands fa-discord"
+                style={{ fontSize: "24px" }}
+              ></i>
             </a>
             <a href="https://www.instagram.com/mcgill_quantum_group/">
-              <img src={instagramIcon} width="35" alt="instagram" />
+              <i
+                className="fa-brands fa-instagram"
+                style={{ fontSize: "28px" }}
+              ></i>
             </a>
           </nav>
 

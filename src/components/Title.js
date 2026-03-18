@@ -34,14 +34,12 @@ function Title(props) {
       <a
         className={`${startFade ? "animate" : ""}`}
         style={{
-          position: "absolute",
-          bottom: "0",
-          left: "0",
-          width: "100%",
           color: "white",
           textAlign: "center",
-          padding: "10px",
+          width: "100%",
+          padding: "16px 0 8px 0",
           textDecoration: "none",
+          marginTop: "auto",
         }}
         href="https://github.com/McGill-Quantum-Group/MQG-Website"
       >

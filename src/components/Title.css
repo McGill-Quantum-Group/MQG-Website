@@ -2,15 +2,20 @@
   position: fixed;
   top: 70px;
   left: 0;
+  right: 0;
+  bottom: 0;
   width: 100vw;
-  height: calc(100vh - 70px); /* height of titlebar, change later if needed */
   backdrop-filter: blur(2px);
   -webkit-backdrop-filter: blur(2px); /* Safari support */
   background-color: rgba(0, 0, 0, 0.195);
-  z-index: 30;
+  z-index: 300;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
+  padding: 32px 16px 24px 16px;
+  box-sizing: border-box;
+  overflow-y: auto;
 }
 
 .text {
@@ -18,10 +23,10 @@
   font-size: 3rem;
   text-align: center;
   text-shadow: 2px 2px #000000ff;
-  z-index: 40;
-
-  transform: translateY(-35px);
+  z-index: 400;
   width: 100%;
+  max-width: 900px;
+  margin: auto 0;
 }
 
 .text p {

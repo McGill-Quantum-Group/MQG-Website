@@ -1,6 +1,6 @@
 // Listen. I know there shouldn't be 20 million import statements up here. "Bad design" or something along those lines
 // Just cut me some slack for a bit man...
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./TitleBar.css";
 import AboutPage from "./linking/AboutPage";
 import {
@@ -8,7 +8,7 @@ import {
   Route,
   Link,
   BrowserRouter,
-  useNavigate,
+  useLocation,
 } from "react-router-dom";
 import Title from "./Title";
 import EventsPage from "./linking/PastEvents";
@@ -38,11 +38,53 @@ import ResourcesRouter from "./linking/admin/resources/ResourcesRouter";
 
 import mqgLogo from "./images/mqg.png";
 import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { FileStack, Menu, X } from "lucide-react";
+import useWindowDimensions from "../listeners/resizeListener";
+
+function AnimatedRoutes({ children, durationMs = 240 }) {
+  const location = useLocation();
+  const [displayLocation, setDisplayLocation] = useState(location);
+  const [phase, setPhase] = useState("in"); // "out" -> swap -> "in"
+  const timeoutRef = useRef(null);
+
+  useEffect(() => {
+    if (location.pathname === displayLocation.pathname) return;
+
+    setPhase("out");
+    window.clearTimeout(timeoutRef.current);
+    timeoutRef.current = window.setTimeout(() => {
+      setDisplayLocation(location);
+      setPhase("in");
+    }, durationMs);
+
+    return () => window.clearTimeout(timeoutRef.current);
+  }, [location, displayLocation, durationMs]);
+
+  return (
+    <>
+      <div
+        className={`page-transition-mask page-transition-mask--${phase}`}
+        aria-hidden="true"
+      />
+      <div className="page-transition-content">
+        {typeof children === "function" ? children(displayLocation) : children}
+      </div>
+    </>
+  );
+}
 
 function TitleBar(props) {
   const [pageLoaded, setPageLoaded] = useState(false);
   const [user, setUser] = useState(null);
+  const [showNav, setShowNav] = useState(false);
+  const [isTitleReady, setIsTitleReady] = useState(false);
   const auth = getAuth();
+  const { width } = useWindowDimensions();
+  const isDesktop = width > 750;
+
+  useEffect(() => {
+    import("./Title").then(() => setIsTitleReady(true));
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -52,6 +94,49 @@ function TitleBar(props) {
     return () => unsubscribe();
   }, [auth]);
 
+  const NavLinks = (
+    <>
+      <Link to="/about">About Us</Link>
+      <Link to="/schedule">Schedule</Link>
+      <Link to="/past-events">Past Events</Link>
+      <Link to="/resources">Resources</Link>
+      <Link to="/contact">Contact Us</Link>
+      <a href="https://discord.gg/KY4e9BrQNe">
+        <i className="fa-brands fa-discord" style={{ fontSize: "24px" }}></i>
+      </a>
+      <a href="https://www.instagram.com/mcgill_quantum_group/">
+        <i className="fa-brands fa-instagram" style={{ fontSize: "28px" }}></i>
+      </a>
+    </>
+  );
+
+  const MobileNavOverlay = () => {
+    if (!showNav) return null;
+
+    return (
+      <div
+        className={`mobile-menu-overlay ${showNav ? "open" : ""}`}
+        onClick={() => setShowNav(false)}
+      >
+        <div
+          className={`mobile-menu ${showNav ? "open" : ""}`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="mobile-menu-header">
+            <button
+              className="mobile-menu-close"
+              aria-label="Close navigation menu"
+              onClick={() => setShowNav(false)}
+            >
+              <X style={{ cursor: "pointer" }} size={24} />
+            </button>
+          </div>
+          <nav className="link-container icons-menu">{NavLinks}</nav>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div
       style={pageLoaded ? { height: "100vh", backgroundColor: "black" } : {}}
@@ -59,133 +144,155 @@ function TitleBar(props) {
       <BrowserRouter>
         <header className="titlebar">
           {/* Title bar */}
-          <nav
-            className="title-scrollbar link-container"
-            style={{
-              overflowX: "auto",
-              overflowY: "hidden",
-              display: "flex",
-              alignItems: "center",
-              gap: "20px",
-              flexGrow: 1,
-              paddingLeft: "15px",
-            }}
-          >
-            <Link to="/">
-              <img src={mqgLogo} width="75" alt="logo" />
-            </Link>
-            <Link to="/about">About Us</Link>
-            <Link to="/schedule">Schedule</Link>
-            <Link to="/past-events">Past Events</Link>
-            <Link to="/resources">Resources</Link>
-            <Link to="/contact">Contact Us</Link>
-            <a href="https://discord.gg/KY4e9BrQNe">
-              <i
-                className="fa-brands fa-discord"
-                style={{ fontSize: "24px" }}
-              ></i>
-            </a>
-            <a href="https://www.instagram.com/mcgill_quantum_group/">
-              <i
-                className="fa-brands fa-instagram"
-                style={{ fontSize: "28px" }}
-              ></i>
-            </a>
-          </nav>
+          <Link to="/">
+            <img src={mqgLogo} width="75" alt="logo" />
+          </Link>
+
+          {/* Desktop hyperlinks */}
+          {isDesktop ? (
+            <nav className="title-scrollbar link-container icons-bar">
+              {NavLinks}
+            </nav>
+          ) : null}
 
           {/* Profile button */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              padding: "0 15px",
-              flexShrink: 0, // Prevents squishing against the right wall
-            }}
-          >
-            {user ? <UserIcon /> : <Link to="/login">Login</Link>}
-            <Link to="/admin"></Link>
-          </div>
+          {isDesktop ? (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flexShrink: 0,
+              }}
+            >
+              {user ? <UserIcon /> : <Link to="/login">Login</Link>}
+              <Link to="/admin"></Link>
+            </div>
+          ) : (
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                flexShrink: 0,
+              }}
+            >
+              <Menu
+                style={{ cursor: "pointer" }}
+                onClick={() => setShowNav(true)}
+                size={24}
+              />
+            </div>
+          )}
         </header>
 
-        <div>
-          <Routes>
-            <Route
-              path="/about"
-              element={<AboutPage onLoaded={() => setPageLoaded(true)} />}
-            />
-            <Route
-              path="/"
-              element={<Title onLoaded={() => setPageLoaded(false)} />}
-            />
-            <Route path="/past-events" element={<EventsPage />} />
-            <Route path="/schedule" element={<SchedulePage />} />
-            <Route path="/resources" element={<ResourcesPage />} />
+        {/* Mobile menu overlay */}
+        {!isDesktop ? <MobileNavOverlay /> : null}
 
-            <Route element={<ProtectedRoute />}>
-              <Route path="/admin" element={<Admin />} />
+        <div className="main-content">
+          <AnimatedRoutes>
+            {(routeLocation) =>
+              isTitleReady ? (
+                <Routes location={routeLocation}>
+                  <Route
+                    path="/about"
+                    element={<AboutPage onLoaded={() => setPageLoaded(true)} />}
+                  />
+                  <Route
+                    path="/"
+                    element={<Title onLoaded={() => setPageLoaded(false)} />}
+                  />
+                  <Route path="/past-events" element={<EventsPage />} />
+                  <Route path="/schedule" element={<SchedulePage />} />
+                  <Route path="/resources" element={<ResourcesPage />} />
 
-              <Route path="/admin/schedule" element={<ScheduleRouter />} />
-              <Route path="/admin/schedule/add" element={<ScheduleAdd />} />
-              <Route path="/admin/schedule/edit" element={<ScheduleEdit />} />
-              <Route
-                path="/admin/schedule/delete"
-                element={<ScheduleDelete />}
-              />
+                  <Route element={<ProtectedRoute />}>
+                    <Route path="/admin" element={<Admin />} />
 
-              <Route path="/admin/past-events" element={<PastEventsRouter />} />
-              <Route
-                path="/admin/past-events/add"
-                element={<PastEventsAdd />}
-              />
-              <Route
-                path="/admin/past-events/edit"
-                element={<PastEventsEdit />}
-              />
-              <Route
-                path="/admin/past-events/delete"
-                element={<PastEventsDelete />}
-              />
-              <Route
-                path="/admin/schedule/delete"
-                element={<ScheduleDelete />}
-              />
+                    <Route
+                      path="/admin/schedule"
+                      element={<ScheduleRouter />}
+                    />
+                    <Route
+                      path="/admin/schedule/add"
+                      element={<ScheduleAdd />}
+                    />
+                    <Route
+                      path="/admin/schedule/edit"
+                      element={<ScheduleEdit />}
+                    />
+                    <Route
+                      path="/admin/schedule/delete"
+                      element={<ScheduleDelete />}
+                    />
 
-              <Route path="/admin/resources" element={<ResourcesRouter />} />
-              <Route path="/admin/resources/add" element={<ResourcesAdd />} />
-              <Route path="/admin/resources/edit" element={<ResourcesEdit />} />
-              <Route
-                path="/admin/resources/delete"
-                element={<ResourcesDelete />}
-              />
-            </Route>
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/sign-up" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/reset" element={<ResetPassword />} />
+                    <Route
+                      path="/admin/past-events"
+                      element={<PastEventsRouter />}
+                    />
+                    <Route
+                      path="/admin/past-events/add"
+                      element={<PastEventsAdd />}
+                    />
+                    <Route
+                      path="/admin/past-events/edit"
+                      element={<PastEventsEdit />}
+                    />
+                    <Route
+                      path="/admin/past-events/delete"
+                      element={<PastEventsDelete />}
+                    />
+                    <Route
+                      path="/admin/schedule/delete"
+                      element={<ScheduleDelete />}
+                    />
 
-            <Route
-              path="*"
-              element={
-                <div
-                  style={{
-                    color: "white",
-                    fontSize: "xx-large",
-                    textAlign: "center",
-                    textShadow: "2px 2px #000000ff",
-                  }}
-                >
-                  <h1>Page not found!</h1>
-                  <p>
-                    While you figure out where to go next, rest and look at the
-                    waves for a little...
-                  </p>
-                  <Link to="/" style={{ color: "white" }}>
-                    Go back to homepage
-                  </Link>
-                </div>
-              }
-            />
-          </Routes>
+                    <Route
+                      path="/admin/resources"
+                      element={<ResourcesRouter />}
+                    />
+                    <Route
+                      path="/admin/resources/add"
+                      element={<ResourcesAdd />}
+                    />
+                    <Route
+                      path="/admin/resources/edit"
+                      element={<ResourcesEdit />}
+                    />
+                    <Route
+                      path="/admin/resources/delete"
+                      element={<ResourcesDelete />}
+                    />
+                  </Route>
+                  <Route path="/contact" element={<ContactPage />} />
+                  <Route path="/sign-up" element={<Signup />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/reset" element={<ResetPassword />} />
+
+                  <Route
+                    path="*"
+                    element={
+                      <div
+                        style={{
+                          color: "white",
+                          fontSize: "xx-large",
+                          textAlign: "center",
+                          textShadow: "2px 2px #000000ff",
+                        }}
+                      >
+                        <h1>Page not found!</h1>
+                        <p>
+                          While you figure out where to go next, rest and look
+                          at the waves for a little...
+                        </p>
+                        <Link to="/" style={{ color: "white" }}>
+                          Go back to homepage
+                        </Link>
+                      </div>
+                    }
+                  />
+                </Routes>
+              ) : null
+            }
+          </AnimatedRoutes>
         </div>
       </BrowserRouter>
     </div>

@@ -7,7 +7,7 @@
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px); /* Safari support */
   background-color: rgba(0, 0, 0, 0.3);
-  z-index: 30;
+  z-index: 900;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -41,7 +41,7 @@
 
 .eventInfo {
   position: relative;
-  z-index: 40;
+  z-index: 1000;
   background-color: rgba(255, 255, 255, 0.95);
   justify-content: space-between;
   justify-self: center;

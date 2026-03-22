@@ -1,3 +1,11 @@
+.react-calendar {
+  width: 90vw;
+  max-width: 1200px;
+  border: none;
+  background: transparent;
+  margin: 0 auto;
+}
+
 .react-calendar__navigation {
   display: flex;
 
@@ -22,7 +30,6 @@
   border-radius: 3px;
   color: white;
   padding: 5px 0;
-  width: 12.5vw;
 
   min-height: 10.5vh; /* Keeps empty days at a decent base size */
   max-height: 14vh; /* Stops growing here and activates the scrollbar */
@@ -106,6 +113,12 @@
   color: white;
   padding: 5px;
   border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word; /* Forces long words to break */
+  white-space: normal;
+  text-align: left;
+  line-height: 1.2;
 }
 
 .event-button:hover {
@@ -120,6 +133,23 @@
   height: 120px;
   justify-self: center;
   animation: spin 2s linear infinite; /* Apply the animation */
+}
+
+/* Mobile */
+@media (max-width: 750px) {
+  .react-calendar__tile {
+    margin: 1px;
+    padding: 2px 0;
+  }
+
+  .event-button {
+    font-size: 0.75rem;
+    padding: 3px;
+  }
+
+  .schedule-scrollbar::-webkit-scrollbar {
+    width: 3px;
+  }
 }
 
 @keyframes spin {

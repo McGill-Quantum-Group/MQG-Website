@@ -17,6 +17,15 @@
   flex-shrink: 0;
 }
 
+.titlebar a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.titlebar a:visited {
+  color: inherit;
+}
+
 .main-content {
   padding-top: 70px; /* keep routed pages below fixed titlebar */
   box-sizing: border-box;
@@ -92,7 +101,7 @@
   justify-content: flex-end;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.25s ease-in-out;
+  transition: opacity 280ms ease-in-out;
   z-index: 200;
 }
 
@@ -104,19 +113,45 @@
 .mobile-menu {
   background-color: #ffffff;
   width: max-content;
+  min-width: 200px;
   max-width: 90vw;
-  height: 100vh;
-  padding: 20px 24px 32px 24px;
+  height: 100dvh; /* Dynamic viewport height handles mobile browser UI better */
+  padding: 20px;
+  box-sizing: border-box; /* Forces padding to stay INSIDE the height */
   box-shadow: -4px 0 12px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  transform: translateX(100%);
-  transition: transform 0.25s ease-in-out;
-  overflow: hidden;
+  transform: translate3d(110%, 0, 0);
+  opacity: 0;
+  transition: transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 220ms ease-in-out;
+  overflow-y: auto; /* Allows scrolling if the list gets too long */
+  overflow-x: hidden;
+  position: relative;
+}
+
+.mobile-menu-header {
+  position: absolute; /* Takes the X out of normal flow so it doesn't push down the list */
+  top: 20px;
+  right: 20px;
+}
+
+.icons-menu {
+  overflow-x: auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex-grow: 1;
+  padding-left: 0px;
+  padding-right: 40px;
+  padding-bottom: 20px; /* Adds breathing room at the bottom of the scroll */
+  margin-top: 0;
 }
 
 .mobile-menu.open {
-  transform: translateX(0);
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
 }
 
 .mobile-menu-header {

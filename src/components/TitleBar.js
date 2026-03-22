@@ -41,6 +41,7 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { FileStack, Menu, X } from "lucide-react";
 import useWindowDimensions from "../listeners/resizeListener";
 
+// Removed transition since it didnt look too nice - we can add it back later though
 function AnimatedRoutes({ children, durationMs = 240 }) {
   const location = useLocation();
   const [displayLocation, setDisplayLocation] = useState(location);
@@ -82,6 +83,11 @@ function TitleBar(props) {
   const { width } = useWindowDimensions();
   const isDesktop = width > 750;
 
+  const handleLogout = () => {
+    signOut(auth);
+    alert("Logged out successfully!");
+  };
+
   useEffect(() => {
     import("./Title").then(() => setIsTitleReady(true));
   }, []);
@@ -94,7 +100,8 @@ function TitleBar(props) {
     return () => unsubscribe();
   }, [auth]);
 
-  const NavLinks = (
+  // Split links to handle the Login button separately on desktop
+  const CoreLinks = (
     <>
       <Link to="/about">About Us</Link>
       <Link to="/schedule">Schedule</Link>
@@ -110,32 +117,32 @@ function TitleBar(props) {
     </>
   );
 
-  const MobileNavOverlay = () => {
-    if (!showNav) return null;
+  const AuthLink = user ? (
+    <a
+      onClick={() => handleLogout()}
+      style={{ cursor: "pointer", margin: "0 20px" }}
+    >
+      Log out
+    </a>
+  ) : (
+    <Link to="/login" style={{ margin: "0 20px" }}>
+      Login
+    </Link>
+  );
 
-    return (
-      <div
-        className={`mobile-menu-overlay ${showNav ? "open" : ""}`}
-        onClick={() => setShowNav(false)}
-      >
-        <div
-          className={`mobile-menu ${showNav ? "open" : ""}`}
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="mobile-menu-header">
-            <button
-              className="mobile-menu-close"
-              aria-label="Close navigation menu"
-              onClick={() => setShowNav(false)}
-            >
-              <X style={{ cursor: "pointer" }} size={24} />
-            </button>
-          </div>
-          <nav className="link-container icons-menu">{NavLinks}</nav>
-        </div>
-      </div>
-    );
-  };
+  // Mobile keeps everything together
+  const MobileNavLinks = (
+    <>
+      {CoreLinks}
+      {user ? (
+        <a onClick={() => handleLogout()} style={{ cursor: "pointer" }}>
+          Log out
+        </a>
+      ) : (
+        <Link to="/login">Login</Link>
+      )}
+    </>
+  );
 
   return (
     <div
@@ -151,11 +158,11 @@ function TitleBar(props) {
           {/* Desktop hyperlinks */}
           {isDesktop ? (
             <nav className="title-scrollbar link-container icons-bar">
-              {NavLinks}
+              {CoreLinks}
             </nav>
           ) : null}
 
-          {/* Profile button */}
+          {/* Profile & Auth button (Moved Login to far right) */}
           {isDesktop ? (
             <div
               style={{
@@ -164,7 +171,8 @@ function TitleBar(props) {
                 flexShrink: 0,
               }}
             >
-              {user ? <UserIcon /> : <Link to="/login">Login</Link>}
+              {AuthLink}
+              {user ? <UserIcon /> : null}
               <Link to="/admin"></Link>
             </div>
           ) : (
@@ -173,10 +181,15 @@ function TitleBar(props) {
                 display: "flex",
                 alignItems: "center",
                 flexShrink: 0,
+                padding: "0 4px",
               }}
             >
               <Menu
-                style={{ cursor: "pointer" }}
+                style={{
+                  cursor: showNav ? "default" : "pointer",
+                  padding: "6px",
+                  visibility: showNav ? "hidden" : "visible",
+                }}
                 onClick={() => setShowNav(true)}
                 size={24}
               />
@@ -184,8 +197,29 @@ function TitleBar(props) {
           )}
         </header>
 
-        {/* Mobile menu overlay */}
-        {!isDesktop ? <MobileNavOverlay /> : null}
+        {/* Mobile menu overlay - INLINED to prevent React from unmounting it! */}
+        {!isDesktop && (
+          <div
+            className={`mobile-menu-overlay ${showNav ? "open" : ""}`}
+            onClick={() => setShowNav(false)}
+          >
+            <div
+              className={`mobile-menu ${showNav ? "open" : ""}`}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="mobile-menu-header">
+                <button
+                  className="mobile-menu-close"
+                  aria-label="Close navigation menu"
+                  onClick={() => setShowNav(false)}
+                >
+                  <X style={{ cursor: "pointer" }} size={24} />
+                </button>
+              </div>
+              <nav className="link-container icons-menu">{MobileNavLinks}</nav>
+            </div>
+          </div>
+        )}
 
         <div className="main-content">
           <AnimatedRoutes>

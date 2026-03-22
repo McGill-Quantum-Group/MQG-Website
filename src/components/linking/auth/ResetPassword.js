@@ -26,7 +26,7 @@ function ResetPassword() {
       })
       .catch((error) => {
         alert(
-          `An error occured: \n${error}\n Please send this error to the devs to diagnose the issue.`,
+          `An error occured: \n${error}\n Please send this error to the devs to diagnose the issue.`
         );
       });
   };
@@ -42,7 +42,7 @@ function ResetPassword() {
             top: "20px",
             right: "20px",
             cursor: "pointer",
-            zIndex: 50 /* Ensures it stays above the gradient */,
+            zIndex: 120 /* Ensures it stays above the gradient */,
           }}
           onClick={() => navigate("/")}
         />

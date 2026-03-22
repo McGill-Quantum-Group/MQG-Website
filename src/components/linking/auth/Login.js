@@ -58,7 +58,7 @@ function Login() {
       })
       .catch((error) => {
         alert(
-          `An error occured: \n${error}\n Please send this error to the devs to diagnose the issue.`,
+          `An error occured: \n${error}\n Please send this error to the devs to diagnose the issue.`
         );
       });
   };
@@ -74,7 +74,7 @@ function Login() {
             top: "20px",
             right: "20px",
             cursor: "pointer",
-            zIndex: 50 /* Ensures it stays above the gradient */,
+            zIndex: 120 /* Ensures it stays above the gradient */,
           }}
           onClick={() => navigate(-1)}
         />

@@ -35,43 +35,21 @@ function EventCard({ events }) {
       )}
       {events.map((event, index) => (
         <button
-          className={`${startFade ? "eventCard animateEventCard" : "eventCard"}`}
+          className={`eventCard ${startFade ? "animateEventCard" : ""}`}
           onClick={() => {
             setShowEvent(true);
             setAllEventInfo(event.longInfo);
           }}
           key={index}
-          style={{
-            padding: 0,
-            overflow: "hidden",
-            display: "flex",
-            textAlign: "left",
-          }}
         >
           {/* Text Container */}
-          <div
-            style={{
-              padding: "20px",
-              flex: 1,
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-          >
+          <div className="eventCard-content">
             <h1 style={{ margin: 0 }}>{event.name}</h1>
             <p style={{ marginTop: "10px" }}>{event.info}</p>
           </div>
 
           {/* Image Container */}
-          <img
-            src={event.image}
-            alt="Event"
-            style={{
-              width: "200px",
-              height: "100%",
-              objectFit: "cover",
-            }}
-          />
+          <img src={event.image} alt="Event" className="eventCard-image" />
         </button>
       ))}
     </div>

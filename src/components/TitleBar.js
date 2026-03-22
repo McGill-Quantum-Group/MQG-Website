@@ -117,14 +117,7 @@ function TitleBar(props) {
     </>
   );
 
-  const AuthLink = user ? (
-    <a
-      onClick={() => handleLogout()}
-      style={{ cursor: "pointer", margin: "0 20px" }}
-    >
-      Log out
-    </a>
-  ) : (
+  const AuthLink = user ? null : (
     <Link to="/login" style={{ margin: "0 20px" }}>
       Login
     </Link>

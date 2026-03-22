@@ -165,6 +165,7 @@ function TitleBar(props) {
           {/* Profile & Auth button (Moved Login to far right) */}
           {isDesktop ? (
             <div
+              className="link-container"
               style={{
                 display: "flex",
                 alignItems: "center",

@@ -58,7 +58,7 @@ function Login() {
       })
       .catch((error) => {
         alert(
-          `An error occured: \n${error}\n Please send this error to the devs to diagnose the issue.`
+          `An error occured: \n${error}\n Please send this error to the devs to diagnose the issue if you dont know how to fix it yourself.`
         );
       });
   };

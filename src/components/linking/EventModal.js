@@ -42,7 +42,13 @@ function EventModal({ isOpen, onClose, allEventInfo }) {
           src={src}
           alt="Event"
           onLoad={() => setIsLoaded(true)}
-          style={{ transition: "opacity 0.3s ease-in-out" }}
+          style={{
+            transition: "opacity 0.3s ease-in-out",
+            objectFit: "cover",
+            width: "100%",
+            height: "auto",
+            maxHeight: "300px",
+          }}
         />
       </div>
     );
@@ -100,7 +106,14 @@ function EventModal({ isOpen, onClose, allEventInfo }) {
           <div />
         )}
         <p>{allEventInfo.description}</p>
-        <div style={{ display: "flex" }}>
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "10px",
+            alignItems: "flex-start",
+          }}
+        >
           {allEventInfo.images.map((img, index) => (
             <EventImage
               className="eventImage"

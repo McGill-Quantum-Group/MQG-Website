@@ -56,7 +56,23 @@ function EventsPage(props) {
   return (
     <div style={{ overflowY: "auto" }}>
       {loaded ? (
-        <EventCard events={events} />
+        events.length !== 0 ? (
+          <EventCard events={events} />
+        ) : (
+          <div style={{ textAlign: "center" }}>
+            <h1
+              style={{ color: "white", marginTop: "20px", marginBottom: "0px" }}
+            >
+              Nothing to see here yet!
+            </h1>
+            <h2
+              style={{ color: "white", marginTop: "20px", marginBottom: "0px" }}
+            >
+              Come back when its not finals season. You can blame the web
+              developer for the lack of updates...
+            </h2>
+          </div>
+        )
       ) : (
         <div
           style={{

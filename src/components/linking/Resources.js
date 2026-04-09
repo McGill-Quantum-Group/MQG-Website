@@ -68,7 +68,7 @@ function ResourcesPage(props) {
             <h2
               style={{ color: "white", marginTop: "20px", marginBottom: "0px" }}
             >
-              Come back when its not midterm season. We might be a little less
+              Come back when its not finals season. I might be a little less
               lazy...
             </h2>
           </div>

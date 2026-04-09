@@ -73,7 +73,7 @@ function AboutPage({ title, text }) {
           the important pages.
         </p>
 
-        <h1>
+        {/* <h1>
           <b>Meet the team!</b>
         </h1>
         <InformationPictures infoDict={executives} />
@@ -82,7 +82,7 @@ function AboutPage({ title, text }) {
         <h2>Professors</h2>
         <InformationPictures infoDict={professors} />
         <h2>Sponsors</h2>
-        <InformationPictures infoDict={sponsors} />
+        <InformationPictures infoDict={sponsors} /> */}
       </div>
     </div>
   );

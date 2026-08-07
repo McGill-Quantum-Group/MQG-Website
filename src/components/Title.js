@@ -11,22 +11,25 @@ function Title(props) {
   }, []);
 
   const qffStickerStyle={
-    width:"80%",
-    height:"60%",
+    width:"100%",
   };
 
   return (
-    <div class="dashboardImage">
+    <div class="dashboard">
+      <div class="dashboardImage">
       <img src={qffSticker} alt="Qiskit Fall Fest 2026" style={qffStickerStyle}/>
-    </div>
-    <div class="dashboardBody">
-      <h1>QISKIT FALL FEST 2026 IS BACK!</h1>
-      <p>
-        The McGill Quantum Group is hosting another Qiskit Fall Fest this year at the McGill Campus!
-        This year, we are celebrating a decade of quantum computing on the cloud. 
-      </p>
+      </div>
+      <div class="dashboardBody">
+        <h1>QISKIT FALL FEST 2026 IS BACK!</h1>
+        <p>
+          The McGill Quantum Group is hosting another Qiskit Fall Fest this year at the McGill Campus!
+          This year, we are celebrating a decade of quantum computing on the cloud. 
+        </p>
+      </div>
     </div>
   );
 }
+
+
 
 export default Title;

@@ -37,6 +37,10 @@
   animation: fade-in 1.5s forwards;
 }
 
+.dashboardBody {
+  background-color: azure;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;

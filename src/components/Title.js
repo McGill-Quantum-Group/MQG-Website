@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import "./Title.css";
-import qffSticker from "../components/images/Fall Fest Sticker Large.png"
+import qffTitleBackground from "../components/images/qff_no_title_background.png"
 
 function Title(props) {
   const [startFade, setStartFade] = useState(false);
@@ -10,21 +10,14 @@ function Title(props) {
     setStartFade(true);
   }, []);
 
-  const qffStickerStyle={
-    width:"100%",
+  const qffTitleBackgroundStyle={
+    width:"80%",
   };
 
   return (
     <div class="dashboard">
       <div class="dashboardImage">
-      <img src={qffSticker} alt="Qiskit Fall Fest 2026" style={qffStickerStyle}/>
-      </div>
-      <div class="dashboardBody">
-        <h1>QISKIT FALL FEST 2026 IS BACK!</h1>
-        <p>
-          The McGill Quantum Group is hosting another Qiskit Fall Fest this year at the McGill Campus!
-          This year, we are celebrating a decade of quantum computing on the cloud. 
-        </p>
+        <img src={qffTitleBackground} alt="Qiskit Fall Fest 2026" style={qffTitleBackgroundStyle}/>
       </div>
     </div>
   );

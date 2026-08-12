@@ -37,8 +37,8 @@
   animation: fade-in 1.5s forwards;
 }
 
-.dashboardBody {
-  background-color: azure;
+.dashboardBackground {
+  position: relative;
 }
 
 #qffBackground {
@@ -53,12 +53,28 @@
   left: 50%;
 }
 
-#QFFTitleColor {
+.blurContainer {
+  background-color: rgba(255,255,255, 0.3);
+  border-radius: 6px;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+  border-width: 25px 25px 25px 25px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.3)
+}
+
+.titleBox {
   position: absolute;
+  top: 25%;
+  left: 50%;
+  text-align: center;
+}
+
+#QFFTitleColor {
+  color: rgb(240, 95, 135)
 }
 
 #McGillColor {
-  position: absolute;
+  color: rgb(255, 65, 35)
 }
 
 @keyframes fade-in {

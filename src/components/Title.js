@@ -15,9 +15,13 @@ function Title(props) {
     <div class="dashboard">
       <div class="dashboardBackground">
         <img id={"qffBackground"} src={qffTitleBackground} alt="Qiskit Fall Fest 2026"/>
-        <h1 id={"QFFTitleColor"}>Qiskit Fall Fest 2026</h1>
-        <h2 id={"McGillColor"}>McGill University</h2>
-        <img id={"qffPinkSticker"} src={qffPinkSticker} alt="Qiskit Fall Fest 2026 Pink Sticker"/>
+        <div class="titleBox">
+          <h1 id={"QFFTitleColor"}>Qiskit Fall Fest 2026</h1>
+          <h2 id={"McGillColor"}>McGill University</h2>
+        </div>
+        <div class="blurContainer">
+          <img id={"qffPinkSticker"} src={qffPinkSticker} alt="Qiskit Fall Fest 2026 Pink Sticker"/>
+        </div>
       </div>
     </div>
   );

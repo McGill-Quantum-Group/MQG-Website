@@ -41,6 +41,26 @@
   background-color: azure;
 }
 
+#qffBackground {
+  width: 90%;
+  margin-left: 5%;
+  margin-right: 5%;
+}
+
+#qffPinkSticker {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+#QFFTitleColor {
+  position: absolute;
+}
+
+#McGillColor {
+  position: absolute;
+}
+
 @keyframes fade-in {
   0% {
     opacity: 0;

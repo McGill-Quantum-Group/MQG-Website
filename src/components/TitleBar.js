@@ -104,7 +104,7 @@ function TitleBar(props) {
   const CoreLinks = (
     <>
       <Link to="/about">About Us</Link>
-      <Link to="/schedule">Schedule</Link>
+      <Link to="/schedule">Calendar</Link>
       <Link to="/past-events">Past Events</Link>
       <Link to="/resources">Resources</Link>
       <Link to="/contact">Contact Us</Link>

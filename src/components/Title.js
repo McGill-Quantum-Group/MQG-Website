@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import "./Title.css";
 import qffTitleBackground from "../components/images/qff_no_title_background.png"
+import qffPinkSticker from "../components/images/badge-pink.svg"
 
 function Title(props) {
   const [startFade, setStartFade] = useState(false);
@@ -10,14 +11,13 @@ function Title(props) {
     setStartFade(true);
   }, []);
 
-  const qffTitleBackgroundStyle={
-    width:"80%",
-  };
-
   return (
     <div class="dashboard">
-      <div class="dashboardImage">
-        <img src={qffTitleBackground} alt="Qiskit Fall Fest 2026" style={qffTitleBackgroundStyle}/>
+      <div class="dashboardBackground">
+        <img id={"qffBackground"} src={qffTitleBackground} alt="Qiskit Fall Fest 2026"/>
+        <h1 id={"QFFTitleColor"}>Qiskit Fall Fest 2026</h1>
+        <h2 id={"McGillColor"}>McGill University</h2>
+        <img id={"qffPinkSticker"} src={qffPinkSticker} alt="Qiskit Fall Fest 2026 Pink Sticker"/>
       </div>
     </div>
   );

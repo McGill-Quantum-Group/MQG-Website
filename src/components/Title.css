@@ -1,42 +1,3 @@
-.textOverlay {
-  position: fixed;
-  top: 70px;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100vw;
-  backdrop-filter: blur(2px);
-  -webkit-backdrop-filter: blur(2px); /* Safari support */
-  background-color: rgba(0, 0, 0, 0.195);
-  z-index: 30;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 32px 16px 24px 16px;
-  box-sizing: border-box;
-  overflow-y: auto;
-}
-
-.text {
-  color: rgb(238, 238, 238);
-  font-size: 3rem;
-  text-align: center;
-  text-shadow: 2px 2px #000000ff;
-  z-index: 40;
-  width: 100%;
-  max-width: 900px;
-  margin: auto 0;
-}
-
-.text p {
-  margin: 0;
-}
-
-.animate {
-  animation: fade-in 1.5s forwards;
-}
-
 .dashboardBackground {
   position: relative;
 }
@@ -48,16 +9,18 @@
 }
 
 #qffPinkSticker {
-  position: absolute;
-  top: 50%;
-  left: 50%;
+  position: relative;
 }
 
 .blurContainer {
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  right: 25%;
   background-color: rgba(255,255,255, 0.3);
   border-radius: 6px;
   box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-  border-width: 25px 25px 25px 25px;
+  border-width: 5% 5% 5% 5%;
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255,255,255,0.3)
 }
@@ -65,7 +28,8 @@
 .titleBox {
   position: absolute;
   top: 25%;
-  left: 50%;
+  left: 25%;
+  right: 25%;
   text-align: center;
 }
 

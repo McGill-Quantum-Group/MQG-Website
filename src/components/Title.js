@@ -4,6 +4,10 @@ import "./Title.css";
 import qffTitleBackground from "../components/images/qff_no_title_background_edited1.png"
 import qffPinkSticker from "../components/images/badge-pink.svg"
 
+function openWin() {
+  window.open("/QiskitFallFest2026.js");
+}
+
 function Title(props) {
   const [startFade, setStartFade] = useState(false);
 
@@ -21,7 +25,7 @@ function Title(props) {
             <h2 id={"McGill"}>McGill University</h2>
           </div>
           <img id={"qffPinkSticker"} src={qffPinkSticker} alt="Qiskit Fall Fest 2026 Pink Sticker"/>
-          <button>Details</button>
+          <button onPress={openWin()}>Details</button>
         </div>
       </div>
     </div>

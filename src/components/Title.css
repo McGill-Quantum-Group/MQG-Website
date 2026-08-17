@@ -3,18 +3,17 @@
 }
 
 #qffBackground {
-  width: 90%;
-  margin-left: 5%;
-  margin-right: 5%;
+  width: 100%;
 }
 
 #qffPinkSticker {
-  position: relative;
+  display: block;
+  margin: auto;
 }
 
 .blurContainer {
   position: absolute;
-  top: 50%;
+  top: 35%;
   left: 25%;
   right: 25%;
   background-color: rgba(255,255,255, 0.3);
@@ -33,12 +32,28 @@
   text-align: center;
 }
 
-#QFFTitleColor {
-  color: rgb(240, 95, 135)
+#QFFTitle {
+  color: rgb(240, 95, 135);
+  font-size: 2em;
 }
 
-#McGillColor {
-  color: rgb(255, 65, 35)
+#McGill {
+  color: rgb(255, 65, 35);
+  font-size: 1.5em;
+}
+
+button {
+  background-color: rgb(240, 95, 135);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1em;
+  margin: 4px 2px;
+  border-radius: 10px;
+  cursor: pointer;
 }
 
 @keyframes fade-in {

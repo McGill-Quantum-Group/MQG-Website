@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useEffect } from "react";
 import "./Title.css";
-import qffTitleBackground from "../components/images/qff_no_title_background.png"
+import qffTitleBackground from "../components/images/qff_no_title_background_edited1.png"
 import qffPinkSticker from "../components/images/badge-pink.svg"
 
 function Title(props) {

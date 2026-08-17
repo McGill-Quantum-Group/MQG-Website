@@ -25,7 +25,7 @@ function Title(props) {
             <h2 id={"McGill"}>McGill University</h2>
           </div>
           <img id={"qffPinkSticker"} src={qffPinkSticker} alt="Qiskit Fall Fest 2026 Pink Sticker"/>
-          <button onPress={openWin()}>Details</button>
+          <button onPress={() => openWin()}>Details</button>
         </div>
       </div>
     </div>

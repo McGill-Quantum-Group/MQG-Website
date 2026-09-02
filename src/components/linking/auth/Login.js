@@ -10,7 +10,6 @@ import { signInWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 
 function Login() {
-  // NOT SECURE! REPLACE LATER
   const [showPage, setShowPage] = useState(false);
   const [loading, setLoading] = useState(false);
 

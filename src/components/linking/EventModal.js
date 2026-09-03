@@ -105,7 +105,7 @@ function EventModal({ isOpen, onClose, allEventInfo }) {
         ) : (
           <div />
         )}
-        <p>{allEventInfo.description}</p>
+        <p style={{ whiteSpace: "pre-wrap" }}>{allEventInfo.description}</p>
         <div
           style={{
             display: "flex",

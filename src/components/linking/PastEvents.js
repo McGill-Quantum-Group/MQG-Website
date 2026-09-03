@@ -42,6 +42,9 @@ function EventsPage(props) {
               title: e.post_title,
               description: e.description,
               images: e.images ?? [],
+              extras: e.extras,
+              location: e.location,
+              date: e.date,
             },
           });
         }

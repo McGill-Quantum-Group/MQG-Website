@@ -7,7 +7,7 @@
   justify-content: space-between;
   padding: 0 24px;
   box-sizing: border-box;
-  position: fixed;
+  position: sticky;
   top: 0;
   left: 0;
   z-index: 100;
@@ -27,7 +27,6 @@
 }
 
 .main-content {
-  padding-top: 70px; /* keep routed pages below fixed titlebar */
   box-sizing: border-box;
 }
 

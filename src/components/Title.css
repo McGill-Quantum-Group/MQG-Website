@@ -2,47 +2,133 @@
   position: relative;
 }
 
+.imageWrapper {
+  position: relative;
+  margin: 10px 10% 20px 10%;
+  /* Restored bottom margin */
+  border: 2px solid rgb(255, 128, 128);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.imageTopTitle {
+  text-align: center;
+  color: rgb(244, 143, 177);
+  /* Softened to match the new palette */
+  font-size: 2em;
+  font-weight: 400;
+  margin: 20px 0;
+  padding: 0 20px;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+.pullTabContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 40px 0 20px 0;
+  /* Extra top padding for smoother gradient transition */
+  background: linear-gradient(to bottom, rgba(35, 0, 5, 0) 0%, rgba(35, 0, 5, 1) 100%);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.5s ease;
+}
+
+.pullTabContainer.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pullTabText {
+  color: rgb(240, 95, 135);
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.pullTabText span {
+  display: inline-block;
+  margin-left: 10px;
+  animation: tab-bounce 2s infinite;
+}
+
+@keyframes tab-bounce {
+
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+
+  40% {
+    transform: translateY(4px);
+  }
+
+  60% {
+    transform: translateY(2px);
+  }
+}
+
 #qffBackground {
   width: 100%;
-  border-radius: 0;
+  display: block;
+  border-radius: 13px;
+  transform: scale(1.02); /* Scale up slightly to overflow the subpixel gap */
+  transform-origin: center;
 }
 
 #qffPinkSticker {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 20%;
+  margin: 20px auto;
 }
 
 .blurContainer {
-  position: absolute;
-  margin-top: 25%;
-  left: 25%;
-  right: 25%;
+  min-height: 100vh;
   background-color: rgba(35, 0, 5, 0.3);
-  border-radius: 6px;
-  box-shadow: 0 4px 30px rgba(0,0,0,0.1);
-  border-width: 5% 5% 5% 5%;
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(35, 0, 5, 0.3)
+  -webkit-backdrop-filter: blur(10px);
+  display: flow-root;
+  /* Prevents child margins from collapsing outside the container */
+  padding-bottom: 40px;
 }
 
 .titleBox {
-  position: absolute;
-  bottom: 35%;
-  left: 20%;
-  right: 20%;
   text-align: center;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  /* Tighter gap */
 }
 
 #QFFTitle {
-  color: rgb(240, 95, 135);
-  font-size: 3em;
+  color: rgb(244, 143, 177);
+  /* Softer pastel pink */
+  font-size: 3.2em;
+  font-weight: 400;
+  /* Not bolded */
+  margin: 0;
+  /* Remove default margins */
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: 0.5px;
 }
 
 #McGill {
-  color: rgb(255, 65, 35);
-  font-size: 2.5em;
+  color: rgb(255, 80, 80);
+  /* More red */
+  font-size: 2.2em;
+  font-weight: 300;
+  /* Even lighter font weight */
+  margin: 0;
+  /* Remove default margins */
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
 button {
@@ -54,18 +140,57 @@ button {
   text-decoration: none;
   display: block;
   font-size: 1em;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 15%;
+  margin: 20px auto 0 auto;
   border-radius: 10px;
   cursor: pointer;
 }
 
-@keyframes fade-in {
-  0% {
-    opacity: 0;
+/* We leave .dashboard alone so the background blur is visible immediately */
+.dashboard {
+}
+
+.dashboard.fade-in {
+}
+
+/* Apply blur and opacity to children instead of parent to prevent breaking backdrop-filter */
+.dashboard > .dashboardBackground > * {
+  filter: blur(2px);
+  opacity: 0;
+  transition: filter 0.4s ease-out, opacity 0.4s ease-out;
+  will-change: filter, opacity;
+}
+
+.dashboard.fade-in > .dashboardBackground > * {
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* Ensure the pull tab is also hidden while loading */
+.dashboard:not(.fade-in) > .pullTabContainer {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+  .imageTopTitle {
+    font-size: 1.5em; /* Smaller text */
+    padding: 0 10px;
   }
-  100% {
-    opacity: 1;
+
+  #QFFTitle {
+    font-size: 2.2em; /* Smaller text */
+  }
+
+  #McGill {
+    font-size: 1.6em; /* Smaller text */
+  }
+
+  .imageWrapper {
+    margin: 10px 3% 20px 3%; /* Much smaller margin to increase image size */
+  }
+
+  .pullTabContainer {
+    display: none; /* Drop the scroll pull-tab on mobile */
   }
 }

@@ -41,6 +41,9 @@ import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import { FileStack, Menu, X } from "lucide-react";
 import useWindowDimensions from "../listeners/resizeListener";
 
+// test
+import QiskitFallFest2026 from "./linking/QiskitFallFest2026"
+
 // Removed transition since it didnt look too nice - we can add it back later though
 function AnimatedRoutes({ children, durationMs = 240 }) {
   const location = useLocation();

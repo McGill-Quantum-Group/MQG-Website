@@ -1,11 +1,12 @@
 import React from 'react';
 import { X, ExternalLink, MapPin, Mail } from 'lucide-react';
 import './AdvancedEventModal.css';
+import EventImage from './EventImage';
 
 function AdvancedEventModal({ isOpen, onClose, eventData }) {
   if (!isOpen || !eventData) return null;
 
-  const { hero, about, schedule, access, contact, organizers } = eventData;
+  const { hero, about, schedule, access, contact, organizers, resources, pastImages } = eventData;
 
   return (
     <div className="adv-modal-overlay" onClick={onClose}>
@@ -93,6 +94,32 @@ function AdvancedEventModal({ isOpen, onClose, eventData }) {
                     <div className="adv-org-name">{org.name}</div>
                     <div className="adv-org-title">{org.title}</div>
                   </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Resources */}
+          {resources && resources.length > 0 && (
+            <section className="adv-section">
+              <h3>Resources</h3>
+              {resources.map((res, idx) => (
+                <div key={idx} className="adv-resource-row">
+                  <h4 className="adv-resource-title">{res.title}</h4>
+                  <a href={res.link} target="_blank" rel="noopener noreferrer" className="adv-resource-link">{res.link}</a>
+                  <p className="adv-resource-desc">{res.description}</p>
+                </div>
+              ))}
+            </section>
+          )}
+
+          {/* Past Qiskit Images */}
+          {pastImages && pastImages.length > 0 && (
+            <section className="adv-section">
+              <h3>Past Qiskit Images</h3>
+              <div className="adv-past-images-container">
+                {pastImages.map((imgSrc, idx) => (
+                  <EventImage key={idx} src={imgSrc} className="adv-past-image" />
                 ))}
               </div>
             </section>

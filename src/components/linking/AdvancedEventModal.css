@@ -186,6 +186,62 @@
   margin-top: 2px;
 }
 
+/* Resources */
+.adv-resource-row {
+  background: #f5f5f5;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border-left: 3px solid rgb(100, 180, 255);
+  margin-bottom: 10px;
+}
+.adv-resource-row:last-child {
+  margin-bottom: 0;
+}
+.adv-resource-title {
+  color: black;
+  font-weight: bold;
+  font-size: 1.05em;
+  margin: 0 0 4px 0;
+}
+.adv-resource-link {
+  color: rgb(240, 95, 135);
+  font-size: 0.9em;
+  text-decoration: underline;
+  word-break: break-all;
+  margin-bottom: 4px;
+  display: block;
+}
+.adv-resource-desc {
+  color: #333;
+  font-size: 0.95em;
+  margin: 0;
+}
+
+/* Past Images - Horizontal Scroll */
+.adv-past-images-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 15px;
+  padding-bottom: 10px;
+}
+.adv-past-images-container::-webkit-scrollbar {
+  height: 6px;
+}
+.adv-past-images-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.adv-past-images-container::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+.adv-past-image {
+  height: 200px;
+  width: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
 @keyframes adv-fade-in {
   0% { opacity: 0; }
   100% { opacity: 1; }
@@ -195,5 +251,8 @@
 @media (max-width: 768px) {
   .adv-modal-content {
     max-width: 95vw;
+  }
+  .adv-past-image {
+    height: 100px;
   }
 }

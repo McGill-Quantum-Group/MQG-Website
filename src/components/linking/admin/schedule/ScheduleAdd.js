@@ -15,7 +15,7 @@ function ScheduleAdd({ operation = "insert", data }) {
   const [description, setDescription] = useState("");
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef("");
-  const maxSize = 5 * 1024 * 1024; // MB
+  const maxSize = 20 * 1024 * 1024; // MB
   const navigator = useNavigate();
 
   // Update only
@@ -42,7 +42,7 @@ function ScheduleAdd({ operation = "insert", data }) {
         const fsize = file.size;
 
         if (fsize > maxSize) {
-          alert(`${file.name} is too large! Please keep uploads under 5 MB.`);
+          alert(`${file.name} is too large! Please keep uploads under 20 MB.`);
 
           // Reset state
           setImageFiles([]);
@@ -203,7 +203,7 @@ function ScheduleAdd({ operation = "insert", data }) {
             onChange={(e) => setDescription(e.target.value)}
           />
           <br />
-          <label>Upload extra images (Max size - 5 MB):</label>
+          <label>Upload extra images (Max size - 20 MB):</label>
           <br />
           <input
             type="file"

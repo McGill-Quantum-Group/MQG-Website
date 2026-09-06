@@ -85,6 +85,25 @@
         "name": "Eldar Isgandarov",
         "title": "Co-President"
       }
+    ],
+    "resources": [
+      {
+        "title": "Qiskit Textbook",
+        "link": "https://qiskit.org/learn/",
+        "description": "Comprehensive textbook on quantum algorithms and Qiskit."
+      },
+      {
+        "title": "Event Code of Conduct",
+        "link": "https://mcgillquantum.com/conduct",
+        "description": "Rules and guidelines for hackathon participants."
+      }
+    ],
+    "pastImages": [
+      "https://inqvyfirgvrhxniawlzq.supabase.co/storage/v1/object/public/past-events-images/events-past/1788662222081_DSC07849.JPG",
+      "https://inqvyfirgvrhxniawlzq.supabase.co/storage/v1/object/public/past-events-images/events-past/1788662222081_DSC07844.JPG",
+      "https://inqvyfirgvrhxniawlzq.supabase.co/storage/v1/object/public/past-events-images/events-past/1788662222081_DSC07822.JPG",
+      "https://inqvyfirgvrhxniawlzq.supabase.co/storage/v1/object/public/past-events-images/events-past/1788662222081_DSC07744.JPG",
+      "https://inqvyfirgvrhxniawlzq.supabase.co/storage/v1/object/public/past-events-images/events-past/1788662222081_DSC07721.JPG"
     ]
   }
 }

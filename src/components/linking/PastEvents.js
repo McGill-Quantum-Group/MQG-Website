@@ -48,8 +48,30 @@ function EventsPage(props) {
             },
           });
         }
-        setEvents(eventData);
-        setLoaded(true);
+        if (eventData.length > 0) {
+          let loadedCount = 0;
+          const checkLoaded = () => {
+            loadedCount++;
+            if (loadedCount === eventData.length) {
+              setEvents(eventData);
+              setLoaded(true);
+            }
+          };
+
+          eventData.forEach((e) => {
+            if (e.image) {
+              const img = new Image();
+              img.onload = checkLoaded;
+              img.onerror = checkLoaded;
+              img.src = e.image;
+            } else {
+              checkLoaded();
+            }
+          });
+        } else {
+          setEvents(eventData);
+          setLoaded(true);
+        }
       }
     };
 

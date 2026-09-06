@@ -20,7 +20,7 @@ function ResourcesAdd({ operation = "insert", data }) {
   const [prevImageUrls, setPrevImageUrls] = useState([]);
   const [isUploading, setIsUploading] = useState(false);
   const fileInputRef = useRef("");
-  const maxSize = 5 * 1024 * 1024;
+  const maxSize = 20 * 1024 * 1024;
 
   const navigate = useNavigate();
 
@@ -28,7 +28,7 @@ function ResourcesAdd({ operation = "insert", data }) {
     // Convert FileList to an array
     if (e.target.files) {
       const files = Array.from(e.target.files);
-      const oversized = files.find((file) => file.size > 5 * 1024 * 1024);
+      const oversized = files.find((file) => file.size > 20 * 1024 * 1024);
       if (oversized) {
         alert(`File ${oversized.name} is too large!`);
         e.target.value = null;
@@ -235,7 +235,7 @@ function ResourcesAdd({ operation = "insert", data }) {
             <br />
             <label style={{ fontSize: "large", marginRight: "10px" }}>
               {" "}
-              Spotlight image (*) - Max 5 MB:
+              Spotlight image (*) - Max 20 MB:
             </label>
             <br />
             <input
@@ -306,7 +306,7 @@ function ResourcesAdd({ operation = "insert", data }) {
             onChange={(e) => setDescription(e.target.value)}
           />
           <br />
-          <label>Event images (Max size - 5 MB):</label>
+          <label>Event images (Max size - 20 MB):</label>
           <br />
           <input
             type="file"

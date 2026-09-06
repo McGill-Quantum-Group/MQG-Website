@@ -1,0 +1,199 @@
+/* Overlay — matches the existing EventModal overlay */
+.adv-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: adv-fade-in 0.5s;
+}
+
+/* Modal container — matches .eventInfo */
+.adv-modal-content {
+  position: relative;
+  z-index: 1000;
+  background-color: rgba(255, 255, 255, 0.95);
+  max-width: 85vw;
+  box-sizing: border-box;
+  border-radius: 10px;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+/* Scrollable inner area with thin scrollbar */
+.adv-modal-scroll {
+  overflow-y: auto;
+  max-height: 90vh;
+  padding: 10px;
+}
+
+/* Thin scrollbar */
+.adv-modal-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.adv-modal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.adv-modal-scroll::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
+}
+
+/* Register button */
+.adv-register-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgb(240, 95, 135);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1em;
+  width: fit-content;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.adv-register-btn:hover {
+  background-color: rgb(255, 105, 145);
+  transform: translateY(-1px);
+}
+
+/* Body — content below the header */
+.adv-body {
+  padding-top: 10px;
+}
+
+/* Section headings */
+.adv-section {
+  margin-bottom: 15px;
+}
+
+.adv-section h3 {
+  font-size: 1.2em;
+  color: black;
+  margin: 0 0 8px 0;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #ddd;
+}
+
+.adv-section p {
+  font-size: 1em;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+}
+
+/* Schedule cards — stacked vertically, one per line */
+.adv-schedule-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.adv-schedule-day {
+  background: #f5f5f5;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border-left: 3px solid rgb(240, 95, 135);
+}
+
+.adv-schedule-day h4 {
+  margin: 0 0 2px 0;
+  color: black;
+  font-size: 1.05em;
+}
+
+.adv-schedule-date {
+  color: rgb(240, 95, 135);
+  font-size: 0.85em;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.adv-schedule-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.adv-schedule-list li {
+  display: flex;
+  gap: 10px;
+}
+
+.adv-time {
+  font-weight: bold;
+  color: #666;
+  min-width: 80px;
+  font-size: 0.9em;
+}
+
+.adv-desc {
+  color: #333;
+  font-size: 0.9em;
+}
+
+/* Access & Contact — each on their own line */
+.adv-info-line {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.adv-info-line p {
+  margin: 0;
+  color: #333;
+  font-size: 1em;
+  line-height: 1.5;
+}
+
+/* Organizer cards */
+.adv-organizers-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.adv-organizer-card {
+  background: #f5f5f5;
+  padding: 10px 15px;
+  border-radius: 8px;
+}
+
+.adv-org-name {
+  color: black;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.adv-org-title {
+  color: #666;
+  font-size: 0.85em;
+  margin-top: 2px;
+}
+
+@keyframes adv-fade-in {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .adv-modal-content {
+    max-width: 95vw;
+  }
+}

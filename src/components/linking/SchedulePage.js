@@ -2,6 +2,8 @@ import "./SchedulePage.css";
 import { useEffect, useState } from "react";
 import Calendar from "react-calendar";
 import EventModal from "./EventModal";
+import AdvancedEventModal from "./AdvancedEventModal";
+import advancedEvents from "./advancedEvents.json";
 import { supabase } from "../supabaseConfig";
 
 function SchedulePage() {
@@ -112,11 +114,19 @@ function SchedulePage() {
       >
         <Calendar tileContent={tileContent} />
         {showEvent ? (
-          <EventModal
-            isOpen={showEvent}
-            onClose={handleCloseModal}
-            allEventInfo={allEventInfo}
-          />
+          advancedEvents[allEventInfo?.title] ? (
+            <AdvancedEventModal
+              isOpen={showEvent}
+              onClose={handleCloseModal}
+              eventData={advancedEvents[allEventInfo.title]}
+            />
+          ) : (
+            <EventModal
+              isOpen={showEvent}
+              onClose={handleCloseModal}
+              allEventInfo={allEventInfo}
+            />
+          )
         ) : (
           <div />
         )}

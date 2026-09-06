@@ -49,8 +49,20 @@
   padding: 10px;
   box-sizing: border-box;
   border-radius: 10px;
-  max-height: 100vh;
+  max-height: 90vh;
   overflow-y: auto;
+}
+
+/* Thin scrollbar for EventModal */
+.eventInfo::-webkit-scrollbar {
+  width: 6px;
+}
+.eventInfo::-webkit-scrollbar-track {
+  background: transparent;
+}
+.eventInfo::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 10px;
 }
 
 .eventImage {

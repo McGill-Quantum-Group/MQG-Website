@@ -194,14 +194,19 @@ function Plane(props) {
 
     materialRef.current.uTime += delta * 1.5;
 
-    const mouseX_ndc = (x / width) * 2 - 1;
-    const mouseY_ndc = -(y / height) * 2 + 1;
+    if (width > 768) {
+      const mouseX_ndc = (x / width) * 2 - 1;
+      const mouseY_ndc = -(y / height) * 2 + 1;
 
-    const mouseVec = new THREE.Vector3(mouseX_ndc, mouseY_ndc, 0);
-    mouseVec.unproject(camera);
+      const mouseVec = new THREE.Vector3(mouseX_ndc, mouseY_ndc, 0);
+      mouseVec.unproject(camera);
 
-    meshRef.current.worldToLocal(mouseVec);
-    materialRef.current.uMouse = mouseVec;
+      meshRef.current.worldToLocal(mouseVec);
+      materialRef.current.uMouse = mouseVec;
+    } else {
+      // Disable mouse reactivity on mobile
+      materialRef.current.uMouse.set(0, 0, 0);
+    }
   });
 
   return (

@@ -7,6 +7,8 @@ import QiskitFallFest2026 from "./linking/QiskitFallFest2026";
 import useScrollToBottom from "../listeners/scrollListener";
 import { supabase } from "./supabaseConfig";
 import EventModal from "./linking/EventModal";
+import AdvancedEventModal from "./linking/AdvancedEventModal";
+import advancedEvents from "./linking/advancedEvents.json";
 
 function Title(props) {
   const [startFade, setStartFade] = useState(false);
@@ -72,25 +74,41 @@ function Title(props) {
 
   return (
     <>
-      <EventModal
-        isOpen={showEventModal}
-        onClose={() => setShowEventModal(false)}
-        allEventInfo={eventInfo}
-      />
+      {eventInfo && advancedEvents["Qiskit Fall Fest 2026"] ? (
+        <AdvancedEventModal
+          isOpen={showEventModal}
+          onClose={() => setShowEventModal(false)}
+          eventData={advancedEvents["Qiskit Fall Fest 2026"]}
+        />
+      ) : (
+        <EventModal
+          isOpen={showEventModal}
+          onClose={() => setShowEventModal(false)}
+          allEventInfo={eventInfo}
+        />
+      )}
       {showDetails ? <QiskitFallFest2026 /> : <div className={`dashboard ${startFade ? 'fade-in' : ''}`}>
         <div className="dashboardBackground blurContainer">
-          <h2 className="imageTopTitle">Qiskit Fall Fest is back bigger and better this year!</h2>
-          <div className="imageWrapper">
-            <img id={"qffBackground"} src={qffTitleBackground} alt="Qiskit Fall Fest 2026" />
+          <div className="heroContainer">
+            <div className="heroLeft">
+              <h2 className="imageTopTitle">Qiskit Fall Fest is back bigger and better this year!</h2>
+            </div>
+            <div className="heroRight">
+              <img id="qffBackground" src={qffTitleBackground} alt="Qiskit Fall Fest 2026" />
+            </div>
           </div>
           <div className="titleBox">
-            <h1 id={"QFFTitle"}>Qiskit Fall Fest 2026</h1>
-            <h2 id={"McGill"}>McGill University</h2>
+            <h1 id="QFFTitle">Qiskit Fall Fest 2026</h1>
+            <h2 id="McGill">McGill University</h2>
           </div>
-          <img id={"qffPinkSticker"} src={qffPinkSticker} alt="Qiskit Fall Fest 2026 Pink Sticker" />
+          <img id="qffPinkSticker" src={qffPinkSticker} alt="Qiskit Fall Fest 2026 Pink Sticker" />
           <button ref={bottomRef} onClick={handleTellMeMore} disabled={fetchingEvent}>
             {fetchingEvent ? "Loading..." : "Tell me more!"}
           </button>
+          <hr className="discordDivider" />
+          <p className="discordCTA">
+            Join our <a href="https://discord.gg/RcYtVGygDb" target="_blank" rel="noopener noreferrer" className="discordLink">Discord</a> for all updates related to the McGill Quantum Group.
+          </p>
         </div>
 
         <div className={`pullTabContainer ${isAtBottom ? 'hidden' : ''}`} onClick={scrollToBottom}>
@@ -98,7 +116,8 @@ function Title(props) {
             Scroll down for more details on this year's Qiskit fall fest... <span>&#x25BC;</span>
           </div>
         </div>
-      </div>}
+      </div>
+      }
     </>
   );
 }

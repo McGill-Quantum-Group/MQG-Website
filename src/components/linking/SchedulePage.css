@@ -8,6 +8,9 @@
 
 .react-calendar__navigation {
   display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+  padding-top: 8px;
 
   .react-calendar__navigation__label {
     font-weight: bold;
@@ -20,6 +23,11 @@
 .react-calendar__month-view__weekdays {
   color: white;
   text-align: center;
+}
+
+/* Remove dotted underline from weekdays */
+.react-calendar__month-view__weekdays abbr {
+  text-decoration: none;
 }
 
 /* ~~~ button styles ~~~ */
@@ -46,7 +54,10 @@
   background: none;
   background-color: #dbbfa5;
   font-size: 16px;
-  margin-top: 8px;
+  border-radius: 8px;
+  padding: 8px;
+  border: none;
+  cursor: pointer;
 }
 
 /* ~~~ day grid styles ~~~ */
@@ -140,15 +151,32 @@
   .react-calendar__tile {
     margin: 1px;
     padding: 2px 0;
+    min-height: 7.5vh;
+    max-height: 10vh;
+  }
+
+  .react-calendar__month-view__weekdays {
+    font-size: 0.8rem;
+  }
+
+  .react-calendar__navigation button {
+    font-size: 14px;
+    padding: 6px;
+    min-width: 35px;
   }
 
   .event-button {
-    font-size: 0.75rem;
-    padding: 3px;
+    font-size: 0.65rem;
+    padding: 2px 4px;
+    border-radius: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
   }
 
   .schedule-scrollbar::-webkit-scrollbar {
-    width: 3px;
+    width: 2px;
   }
 }
 

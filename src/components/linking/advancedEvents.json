@@ -1,0 +1,90 @@
+{
+  "Qiskit Fall Fest 2026": {
+    "hero": {
+      "title": "McGill Qiskit Fall Fest 2026",
+      "subtitle": "Welcome to the Quantum Computing Hackathon!",
+      "registrationLink": "https://docs.google.com/forms/"
+    },
+    "about": "The Qiskit Fall Fest is a global series of events held at universities worldwide on the theme of quantum computing. Taking place annually, these events are primarily planned and run by students with support from IBM Quantum.",
+    "schedule": [
+      {
+        "dayTitle": "Day 0: Pre-Training Sessions",
+        "date": "Oct. 27th - Oct. 30th",
+        "items": [
+          {
+            "time": "18:30-20:30",
+            "description": "Introduction of Qiskit"
+          },
+          {
+            "time": "18:30-20:30",
+            "description": "Fundamental Algorithms"
+          },
+          {
+            "time": "18:30-20:30",
+            "description": "Advanced Algorithms & Theme Explanation"
+          }
+        ]
+      },
+      {
+        "dayTitle": "Day 1",
+        "date": "Nov. 1 (Sat)",
+        "items": [
+          {
+            "time": "10:00",
+            "description": "Opening Ceremony"
+          },
+          {
+            "time": "10:30",
+            "description": "Lecture & Hands-on Session"
+          },
+          {
+            "time": "13:00",
+            "description": "Team Building & Development"
+          },
+          {
+            "time": "18:00",
+            "description": "Closing"
+          }
+        ]
+      },
+      {
+        "dayTitle": "Day 2",
+        "date": "Nov. 8 (Sat)",
+        "items": [
+          {
+            "time": "10:00",
+            "description": "Opening"
+          },
+          {
+            "time": "10:30",
+            "description": "Team Development"
+          },
+          {
+            "time": "15:00",
+            "description": "Final Submissions Due"
+          },
+          {
+            "time": "16:00",
+            "description": "Final Presentations & Winner Announcement"
+          },
+          {
+            "time": "18:00",
+            "description": "Closing Ceremony"
+          }
+        ]
+      }
+    ],
+    "access": "Hybrid Event (In-person and Online)\nIn-person Venue: Somewhere at McGill",
+    "contact": "mcgillquantumgroup@gmail.com",
+    "organizers": [
+      {
+        "name": "Wenyu Sun",
+        "title": "President"
+      },
+      {
+        "name": "Eldar Isgandarov",
+        "title": "Co-President"
+      }
+    ]
+  }
+}

@@ -2,33 +2,160 @@
   position: relative;
 }
 
-.imageWrapper {
+/* ===== Hero Split: text left, image right ===== */
+.heroContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 60vh;
+  background: radial-gradient(circle at left, #2c101d 0%, #15050d 100%);
+  padding: 40px 5% 80px 5%;
+  box-sizing: border-box;
   position: relative;
-  margin: 10px 10% 20px 10%;
-  /* Restored bottom margin */
-  border: 2px solid rgb(255, 128, 128);
-  border-radius: 15px;
   overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 90%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Atom decoration on the left */
+.heroContainer::before {
+  content: "";
+  position: absolute;
+  left: -350px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 800px;
+  height: 800px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cg transform='rotate(60 50 50)'%3E%3Ccircle cx='50' cy='50' r='6' fill='%23f48fb1'/%3E%3Cellipse cx='50' cy='50' rx='40' ry='12' fill='none' stroke='%23f48fb1' stroke-width='2' transform='rotate(30 50 50)'/%3E%3Cellipse cx='50' cy='50' rx='40' ry='12' fill='none' stroke='%23f48fb1' stroke-width='2' transform='rotate(90 50 50)'/%3E%3Cellipse cx='50' cy='50' rx='40' ry='12' fill='none' stroke='%23f48fb1' stroke-width='2' transform='rotate(150 50 50)'/%3E%3Ccircle cx='85' cy='30' r='4' fill='%23f48fb1'/%3E%3Ccircle cx='50' cy='10' r='4' fill='%23f48fb1'/%3E%3Ccircle cx='15' cy='30' r='4' fill='%23f48fb1'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.15;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 85%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 30%, rgba(0, 0, 0, 0) 85%);
+}
+
+.heroLeft {
+  flex: 0 1 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  z-index: 2;
+  padding-left: 3%;
+}
+
+.heroRight {
+  flex: 0 1 55%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .imageTopTitle {
-  text-align: center;
+  text-align: left;
   color: rgb(244, 143, 177);
-  /* Softened to match the new palette */
   font-size: 2em;
   font-weight: 400;
-  margin: 20px 0;
-  padding: 0 20px;
+  margin: 0;
+  padding: 0;
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
+#qffBackground {
+  width: 100%;
+  max-width: 700px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  object-fit: cover;
+}
+
+.titleBox {
+  text-align: center;
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#QFFTitle {
+  color: rgb(244, 143, 177);
+  font-size: 3.2em;
+  font-weight: 400;
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+#McGill {
+  color: rgb(255, 80, 80);
+  font-size: 2.2em;
+  font-weight: 300;
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+#qffPinkSticker {
+  display: block;
+  margin: 20px auto;
+}
+
+.blurContainer {
+  min-height: 100vh;
+  background-color: rgba(35, 0, 5, 0.3);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: flow-root;
+  padding-bottom: 40px;
+}
+
+/* ===== Discord CTA ===== */
+.discordDivider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin: 25px 15% 15px 15%;
+}
+
+.discordCTA {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95em;
+  margin: 0;
+}
+
+.discordLink {
+  color: rgb(244, 143, 177);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.discordLink:hover {
+  text-decoration: underline;
+}
+
+button {
+  background-color: rgb(240, 95, 135);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 1em;
+  margin: 20px auto 0 auto;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* ===== Pull tab ===== */
 .pullTabContainer {
   position: fixed;
   bottom: 0;
   left: 0;
   width: 100%;
   padding: 40px 0 20px 0;
-  /* Extra top padding for smoother gradient transition */
   background: linear-gradient(to bottom, rgba(35, 0, 5, 0) 0%, rgba(35, 0, 5, 1) 100%);
   z-index: 100;
   display: flex;
@@ -76,121 +203,63 @@
   }
 }
 
-#qffBackground {
-  width: 100%;
-  display: block;
-  border-radius: 13px;
-  transform: scale(1.02); /* Scale up slightly to overflow the subpixel gap */
-  transform-origin: center;
-}
-
-#qffPinkSticker {
-  display: block;
-  margin: 20px auto;
-}
-
-.blurContainer {
-  min-height: 100vh;
-  background-color: rgba(35, 0, 5, 0.3);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  display: flow-root;
-  /* Prevents child margins from collapsing outside the container */
-  padding-bottom: 40px;
-}
-
-.titleBox {
-  text-align: center;
-  margin: 10px 0;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  /* Tighter gap */
-}
-
-#QFFTitle {
-  color: rgb(244, 143, 177);
-  /* Softer pastel pink */
-  font-size: 3.2em;
-  font-weight: 400;
-  /* Not bolded */
-  margin: 0;
-  /* Remove default margins */
-  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  letter-spacing: 0.5px;
-}
-
-#McGill {
-  color: rgb(255, 80, 80);
-  /* More red */
-  font-size: 2.2em;
-  font-weight: 300;
-  /* Even lighter font weight */
-  margin: 0;
-  /* Remove default margins */
-  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-}
-
-button {
-  background-color: rgb(240, 95, 135);
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: block;
-  font-size: 1em;
-  margin: 20px auto 0 auto;
-  border-radius: 10px;
-  cursor: pointer;
-}
-
+/* ===== Fade-in animation ===== */
 /* We leave .dashboard alone so the background blur is visible immediately */
-.dashboard {
-}
+.dashboard {}
 
-.dashboard.fade-in {
-}
+.dashboard.fade-in {}
 
 /* Apply blur and opacity to children instead of parent to prevent breaking backdrop-filter */
-.dashboard > .dashboardBackground > * {
+.dashboard>.dashboardBackground>* {
   filter: blur(2px);
   opacity: 0;
   transition: filter 0.4s ease-out, opacity 0.4s ease-out;
   will-change: filter, opacity;
 }
 
-.dashboard.fade-in > .dashboardBackground > * {
+.dashboard.fade-in>.dashboardBackground>* {
   filter: blur(0);
   opacity: 1;
 }
 
 /* Ensure the pull tab is also hidden while loading */
-.dashboard:not(.fade-in) > .pullTabContainer {
+.dashboard:not(.fade-in)>.pullTabContainer {
   opacity: 0;
   pointer-events: none;
 }
 
-/* Mobile Responsiveness */
+/* ===== Mobile Responsiveness ===== */
 @media (max-width: 768px) {
+  .heroContainer {
+    flex-direction: column;
+    padding: 10% 5%;
+    min-height: auto;
+  }
+
+  .heroLeft {
+    align-items: center;
+    padding-left: 0;
+  }
+
   .imageTopTitle {
-    font-size: 1.5em; /* Smaller text */
+    text-align: center;
+    font-size: 1.5em;
     padding: 0 10px;
   }
 
+  .heroRight {
+    padding: 20px 0 0 0;
+  }
+
   #QFFTitle {
-    font-size: 2.2em; /* Smaller text */
+    font-size: 2.2em;
   }
 
   #McGill {
-    font-size: 1.6em; /* Smaller text */
-  }
-
-  .imageWrapper {
-    margin: 10px 3% 20px 3%; /* Much smaller margin to increase image size */
+    font-size: 1.6em;
   }
 
   .pullTabContainer {
-    display: none; /* Drop the scroll pull-tab on mobile */
+    display: none;
   }
 }

@@ -52,6 +52,16 @@
             "description": "Social Time"
           }
         ]
+      },
+      {
+        "dayTitle": "Day 3",
+        "date": "Nov. 14th",
+        "items": [
+          {
+            "time": "9:00 - 5:30 pm",
+            "description": "Qiskit Hackathon!"
+          }
+        ]
       }
     ],
     "access": "Hybrid Event (In-person and Online)\nIn-person Venue: McGill Campus (TBD)",

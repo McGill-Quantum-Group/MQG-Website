@@ -2,80 +2,60 @@
   "Qiskit Fall Fest 2026": {
     "hero": {
       "title": "McGill Qiskit Fall Fest 2026",
-      "subtitle": "Welcome to the Quantum Computing Hackathon!",
+      "subtitle": "Celebrating 10 years of quantum computing on the cloud!",
       "registrationLink": "https://docs.google.com/forms/"
     },
     "about": "The Qiskit Fall Fest is a global series of events held at universities worldwide on the theme of quantum computing. Taking place annually, these events are primarily planned and run by students with support from IBM Quantum.",
     "schedule": [
       {
-        "dayTitle": "Day 0: Pre-Training Sessions",
-        "date": "Oct. 27th - Oct. 30th",
+        "dayTitle": "Day 0: Pre-Event Sessions",
+        "date": "Nov. 11th",
         "items": [
           {
-            "time": "18:30-20:30",
-            "description": "Introduction of Qiskit"
+            "time": "17:00 - 17:45",
+            "description": "Environment Set-Up"
           },
           {
-            "time": "18:30-20:30",
-            "description": "Fundamental Algorithms"
-          },
-          {
-            "time": "18:30-20:30",
-            "description": "Advanced Algorithms & Theme Explanation"
+            "time": "18:00 - 21:00",
+            "description": "Building a Quantum Circuit"
           }
         ]
       },
       {
         "dayTitle": "Day 1",
-        "date": "Nov. 1 (Sat)",
+        "date": "Nov. 12th",
         "items": [
           {
-            "time": "10:00",
-            "description": "Opening Ceremony"
+            "time": "17:00 - 17:45",
+            "description": "Welcome Session: The Past, The Present and The Future Outlook"
           },
           {
-            "time": "10:30",
-            "description": "Lecture & Hands-on Session"
+            "time": "18:00 - 18:45",
+            "description": "McGill Student Presentation"
           },
           {
-            "time": "13:00",
-            "description": "Team Building & Development"
-          },
-          {
-            "time": "18:00",
-            "description": "Closing"
+            "time": "19:00 - 21:00",
+            "description": "Quantum Simulation Workshop"
           }
         ]
       },
       {
         "dayTitle": "Day 2",
-        "date": "Nov. 8 (Sat)",
+        "date": "Nov. 13th",
         "items": [
           {
-            "time": "10:00",
-            "description": "Opening"
+            "time": "17:00 - 19:00",
+            "description": "Speakers Panel: The Academic and Industry Pathways"
           },
           {
-            "time": "10:30",
-            "description": "Team Development"
-          },
-          {
-            "time": "15:00",
-            "description": "Final Submissions Due"
-          },
-          {
-            "time": "16:00",
-            "description": "Final Presentations & Winner Announcement"
-          },
-          {
-            "time": "18:00",
-            "description": "Closing Ceremony"
+            "time": "19:00 - 19:45",
+            "description": "Social Time"
           }
         ]
       }
     ],
-    "access": "Hybrid Event (In-person and Online)\nIn-person Venue: Somewhere at McGill",
-    "contact": "mcgillquantumgroup@gmail.com",
+    "access": "Hybrid Event (In-person and Online)\nIn-person Venue: McGill Campus (TBD)",
+    "contact": "quantumclub@susmcgill.ca",
     "organizers": [
       {
         "name": "Wenyu Sun",

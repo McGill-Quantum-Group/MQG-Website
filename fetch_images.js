@@ -1,3 +1,4 @@
+// Helper for fetching the permanent link of the images that Supabase hosts them on
 const { createClient } = require('@supabase/supabase-js');
 
 const supabase = createClient(

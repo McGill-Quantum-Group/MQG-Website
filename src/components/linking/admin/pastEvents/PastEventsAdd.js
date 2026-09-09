@@ -19,8 +19,7 @@ function PastEventsAdd({ operation = "insert", data }) {
   const [prevImageUrls, setPrevImageUrls] = useState([]);
   const fileInputRef = useRef("");
   const [isUploading, setIsUploading] = useState(false);
-  const maxSize = 20 * 1024 * 1024;
-
+  const maxSize = 3 * 1024 * 1024;
   const navigate = useNavigate();
 
   const handleImageChange = (e) => {
@@ -221,7 +220,7 @@ function PastEventsAdd({ operation = "insert", data }) {
             <br />
             <label style={{ fontSize: "large", marginRight: "10px" }}>
               {" "}
-              Spotlight image (*) - Max 20 MB:
+              Spotlight image (*) - Max 3 MB:
             </label>
             <br />
             <input
@@ -289,7 +288,7 @@ function PastEventsAdd({ operation = "insert", data }) {
             onChange={(e) => setDescription(e.target.value)}
           />
           <br />
-          <label>Event images (Max size - 20 MB):</label>
+          <label>Event images (Max size - 3 MB):</label>
           <br />
           <input
             type="file"

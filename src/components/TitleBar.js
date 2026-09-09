@@ -111,7 +111,7 @@ function TitleBar(props) {
       <Link to="/past-events">Past Events</Link>
       <Link to="/resources">Resources</Link>
       <Link to="/contact">Contact Us</Link>
-      <a href="https://discord.gg/KY4e9BrQNe">
+      <a href="https://discord.gg/RcYtVGygDb">
         <i className="fa-brands fa-discord" style={{ fontSize: "24px" }}></i>
       </a>
       <a href="https://www.instagram.com/mcgill_quantum_group/">

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Title.css";
-import qffTitleBackground from "../components/images/qff_no_title_background_edited1.png"
+import qffTitleBackground from "../components/images/hero_blue_no_title.png"
 import qffPinkSticker from "../components/images/badge-pink.svg"
 import QiskitFallFest2026 from "./linking/QiskitFallFest2026";
 import useScrollToBottom from "../listeners/scrollListener";
@@ -91,29 +91,22 @@ function Title(props) {
         <div className="dashboardBackground blurContainer">
           <div className="heroContainer">
             <div className="heroLeft">
-              <h2 className="imageTopTitle">Qiskit Fall Fest is back bigger and better this year!</h2>
+              <div className="titleBox">
+                <h1 id="QFFTitle">Qiskit Fall Fest 2026</h1>
+                <h2 id="McGill">@ McGill University</h2>
+              </div>
+              <button ref={bottomRef} onClick={handleTellMeMore} disabled={fetchingEvent}>
+                {fetchingEvent ? "Loading..." : "Tell me more!"}
+              </button>
             </div>
             <div className="heroRight">
               <img id="qffBackground" src={qffTitleBackground} alt="Qiskit Fall Fest 2026" />
             </div>
           </div>
-          <div className="titleBox">
-            <h1 id="QFFTitle">Qiskit Fall Fest 2026</h1>
-            <h2 id="McGill">McGill University</h2>
-          </div>
-          <img id="qffPinkSticker" src={qffPinkSticker} alt="Qiskit Fall Fest 2026 Pink Sticker" />
-          <button ref={bottomRef} onClick={handleTellMeMore} disabled={fetchingEvent}>
-            {fetchingEvent ? "Loading..." : "Tell me more!"}
-          </button>
-          <hr className="discordDivider" />
-          <p className="discordCTA">
-            Join our <a href="https://discord.gg/RcYtVGygDb" target="_blank" rel="noopener noreferrer" className="discordLink">Discord</a> for all updates related to the McGill Quantum Group.
-          </p>
-        </div>
-
-        <div className={`pullTabContainer ${isAtBottom ? 'hidden' : ''}`} onClick={scrollToBottom}>
-          <div className="pullTabText">
-            Scroll down for more details on this year's Qiskit fall fest... <span>&#x25BC;</span>
+          <div className="bottomDescriptionContainer">
+            <p className="bottomDescription">
+              Qiskit Fall Fest is a global event hosted across universities and institutions across the world. This year, we are celebrating 10 years of quantum computing on the IBM cloud. Join us in November learning quantum computing together at the McGill Downtown Campus.
+            </p>
           </div>
         </div>
       </div>

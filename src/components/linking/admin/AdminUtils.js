@@ -12,14 +12,22 @@ export const secureDbRequest = async (
   const token = await auth.currentUser?.getIdToken();
   if (!token) throw new Error("Not authenticated with Firebase");
 
-  // Destructure the Supabase response
-  const { data, error } = await supabase.functions.invoke("admin-action", {
-    headers: { Authorization: `Bearer ${token}` },
-    body: { action, table, data: payload, id },
+  // Direct fetch to bypass supabase-js header handling
+  const SUPABASE_URL = "https://inqvyfirgvrhxniawlzq.supabase.co";
+  const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlucXZ5ZmlyZ3ZyaHhuaWF3bHpxIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njk4NjY2OTgsImV4cCI6MjA4NTQ0MjY5OH0.UAfeDCDklcRob9IBRHedQ7H0g4tFMMgtXT0EhtZ7plk";
+
+  const res = await fetch(`${SUPABASE_URL}/functions/v1/admin-action`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "apikey": SUPABASE_ANON_KEY,
+      "x-firebase-token": token,
+    },
+    body: JSON.stringify({ action, table, data: payload, id }),
   });
 
-  if (error) throw new Error(error.message);
-  if (data?.error) throw new Error(data.error);
+  const data = await res.json();
+  if (!res.ok) throw new Error(data.error || `Edge Function error: ${res.status}`);
 
   return data;
 };

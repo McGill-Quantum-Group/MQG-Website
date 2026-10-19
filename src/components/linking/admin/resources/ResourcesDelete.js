@@ -117,13 +117,14 @@ function ResourcesDelete() {
                 checked={selectedIds.includes(event.id)}
                 onChange={() => handleUpdateSelectedEvents(event.id)}
               />
-              <button
+              <span
+                style={{ cursor: "pointer", textDecoration: "underline" }}
                 onClick={() => {
                   handleModalRender(event);
                 }}
               >
                 {event.title}
-              </button>
+              </span>
             </div>
           ))
         ) : (

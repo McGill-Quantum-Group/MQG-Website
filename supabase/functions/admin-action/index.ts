@@ -8,7 +8,7 @@ import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, x-firebase-token",
 };
 
 /** Parse a Supabase storage public URL into bucket and path for removal */
@@ -23,8 +23,7 @@ serve(async (req) => {
   if (req.method === "OPTIONS") return new Response("ok", { headers: corsHeaders });
 
   try {
-    const authHeader = req.headers.get("Authorization");
-    const idToken = authHeader?.replace("Bearer ", "");
+    const idToken = req.headers.get("x-firebase-token");
     if (!idToken) throw new Error("Unauthorized: No token provided");
 
     // Verify token with Google (using the Firebase Key)

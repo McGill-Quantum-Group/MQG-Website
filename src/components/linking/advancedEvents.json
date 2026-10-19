@@ -12,12 +12,24 @@
         "date": "Nov. 11th",
         "items": [
           {
-            "time": "17:00 - 17:45",
+            "time": "16:30 - 17:00",
+            "description": "Registration & Set-up"
+          },
+          {
+            "time": "17:00 - 17:30",
             "description": "Environment Set-Up"
           },
           {
-            "time": "18:00 - 21:00",
-            "description": "Building a Quantum Circuit"
+            "time": "17:30 - 18:00",
+            "description": "[Workshop] Building a Quantum Circuit"
+          },
+          {
+            "time": "18:00 - 19:45",
+            "description": "Free Work Time"
+          },
+          {
+            "time": "19:45 - 21:00",
+            "description": "IBM Guest Speaker Presentation"
           }
         ]
       },
@@ -26,16 +38,20 @@
         "date": "Nov. 12th",
         "items": [
           {
+            "time": "16:30 - 17:00",
+            "description": "Registration & Set-up"
+          },
+          {
             "time": "17:00 - 17:45",
-            "description": "Welcome Session: The Past, The Present and The Future Outlook"
+            "description": "Welcome Session"
           },
           {
-            "time": "18:00 - 18:45",
-            "description": "McGill Student Presentation"
+            "time": "17:45 - 18:45",
+            "description": "Research Presentation"
           },
           {
-            "time": "19:00 - 21:00",
-            "description": "Quantum Simulation Workshop"
+            "time": "18:45 - 20:00",
+            "description": "[Workshop] Quantum Simulation"
           }
         ]
       },
@@ -44,12 +60,36 @@
         "date": "Nov. 13th",
         "items": [
           {
-            "time": "17:00 - 19:00",
-            "description": "Speakers Panel: The Academic and Industry Pathways"
+            "time": "16:30 - 17:00",
+            "description": "Registration & Set-up"
           },
           {
-            "time": "19:00 - 19:45",
-            "description": "Social Time"
+            "time": "17:00 - 17:30",
+            "description": "PINQ"
+          },
+          {
+            "time": "17:30 - 18:00",
+            "description": "Mohammad ETS"
+          },
+          {
+            "time": "18:00 - 18:15",
+            "description": "Short Break + Short Q&A"
+          },
+          {
+            "time": "18:15 - 18:45",
+            "description": "MonarQ"
+          },
+          {
+            "time": "18:45 - 19:15",
+            "description": "ETS"
+          },
+          {
+            "time": "19:15 - 19:45",
+            "description": "Final Q&A"
+          },
+          {
+            "time": "19:45 - 20:00",
+            "description": "Hackathon Prompt Release"
           }
         ]
       },

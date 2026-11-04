@@ -72,7 +72,8 @@ function AdvancedEventModal({ isOpen, onClose, eventData }) {
               <div className="adv-schedule-grid">
                 {speakers.map((spk, idx) => (
                   <div key={idx} className="adv-speaker-row">
-                    <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                      {/* Speaker avatar commented out for now
                       {spk.image ? (
                         <img src={spk.image} alt={spk.name} className="adv-speaker-img" />
                       ) : (
@@ -80,6 +81,7 @@ function AdvancedEventModal({ isOpen, onClose, eventData }) {
                           {spk.name.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase()}
                         </div>
                       )}
+                      */}
                       <div>
                         <h4 className="adv-speaker-name">{spk.name}</h4>
                         {spk.affiliation && (

@@ -79,7 +79,7 @@
 .speaker-card-header {
   display: flex;
   align-items: center;
-  gap: 26px;
+  /* gap: 26px; */
 }
 
 /* Avatar — enlarged image with circular crop, NO border outline, NO glow shadow */
@@ -139,43 +139,43 @@
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
-/* Speaker Meta — height matches image (125px) so top & bottom text align with top & bottom of image */
+/* Speaker Meta — natural spacing without forced height or gaps */
 .speaker-meta {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  height: 125px;
-  min-height: 125px;
+  /* justify-content: space-between; */
+  /* height: 125px; */
+  /* min-height: 125px; */
+  gap: 4px;
   flex: 1;
   min-width: 0;
   box-sizing: border-box;
-  padding: 2px 0;
 }
 
 .speaker-name {
   color: #ffffff;
-  font-size: 2.1em;
+  font-size: 1.85em;
   font-weight: 800;
   margin: 0;
-  line-height: 1.15;
+  line-height: 1.2;
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
 .speaker-company {
   color: rgb(240, 95, 135);
-  font-size: 1.35em;
+  font-size: 1.2em;
   font-weight: 700;
   margin: 0;
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  line-height: 1.2;
+  line-height: 1.25;
 }
 
 .speaker-role {
   color: rgba(255, 255, 255, 0.75);
-  font-size: 1.1em;
+  font-size: 1.02em;
   font-weight: 500;
   margin: 0;
-  line-height: 1.25;
+  line-height: 1.3;
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
@@ -185,7 +185,7 @@
   font-size: 1.02em;
   line-height: 1.65;
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  margin-top: 20px;
+  margin-top: 16px;
 }
 
 .speaker-bio-paragraph {
@@ -221,51 +221,7 @@
     padding: 22px 20px;
   }
 
-  /* Keep image size the same on mobile as requested */
-  .speaker-avatar-wrapper {
-    width: 125px;
-    height: 125px;
-    min-width: 125px;
-    min-height: 125px;
-  }
-
-  .speaker-initials-text {
-    font-size: 2.2em;
-  }
-}
-
-@media (max-width: 640px) {
-  .speaker-card-header {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 16px;
-  }
-
-  .speaker-meta {
-    height: auto;
-    min-height: auto;
-    justify-content: flex-start;
-    gap: 6px;
-  }
-
   .speaker-name {
-    font-size: 1.7em;
-  }
-
-  .speaker-company {
-    font-size: 1.2em;
-  }
-
-  .speaker-role {
-    font-size: 1.02em;
-  }
-
-  /* Still keep image size the same on small mobile */
-  .speaker-avatar-wrapper {
-    width: 125px;
-    height: 125px;
-    min-width: 125px;
-    min-height: 125px;
+    font-size: 1.6em;
   }
 }

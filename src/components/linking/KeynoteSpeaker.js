@@ -27,6 +27,7 @@ function KeynoteSpeaker({ speaker }) {
   return (
     <div className="keynote-speaker-card">
       <div className="speaker-card-header">
+        {/* Speaker image / avatar commented out for now
         <div className="speaker-avatar-wrapper">
           {hasImage ? (
             <>
@@ -49,6 +50,7 @@ function KeynoteSpeaker({ speaker }) {
             </div>
           )}
         </div>
+        */}
 
         <div className="speaker-meta">
           <h3 className="speaker-name">{name}</h3>

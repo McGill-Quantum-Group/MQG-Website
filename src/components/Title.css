@@ -4,7 +4,7 @@
   background: linear-gradient(135deg, #4a0d1a 0%, #080205 100%);
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 /* ===== Hero Split: text left, image right ===== */
@@ -13,11 +13,11 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 30px 5% 20px 5%;
+  padding: 40px 5% 20px 5%;
   box-sizing: border-box;
   position: relative;
   overflow: hidden;
-  flex: 1; /* Take up available space */
+  min-height: calc(85vh - 75px);
 }
 
 /* Atom decoration removed as per user request */
@@ -72,7 +72,6 @@
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
 }
 
-/* ===== Bottom Description ===== */
 button {
   background-color: rgb(240, 95, 135);
   border: none;
@@ -80,36 +79,104 @@ button {
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
-  display: block;
+  display: inline-block;
   font-size: 1.1em;
-  margin: 10px 0;
   border-radius: 10px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: all 0.2s ease;
   font-weight: bold;
+  margin: 15px 0 10px 0;
 }
 
 button:hover {
   background-color: rgb(210, 75, 115);
+  transform: translateY(-1px);
 }
 
+/* ===== Bottom Description ===== */
 .bottomDescriptionContainer {
   padding: 20px 10%;
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 }
 
 .bottomDescription {
-  color: rgba(255, 255, 255, 0.8);
-  font-size: 1.1em;
-  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 1.15em;
+  line-height: 1.7;
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-  max-width: 800px;
+  max-width: 860px;
   margin: 0 auto;
+}
+
+/* ===== Horizontal line dividing bottom description and keynote speakers ===== */
+.speakersDivider {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  width: 85%;
+  max-width: 1050px;
+  margin: 30px auto 10px auto;
+}
+
+/* ===== Pull tab popup ("scroll down to see more") ===== */
+.pullTabContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 30px 0 18px 0;
+  background: linear-gradient(to bottom, rgba(35, 0, 5, 0) 0%, rgba(20, 2, 8, 0.95) 100%);
+  z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.4s ease;
+  pointer-events: auto;
+}
+
+.pullTabContainer.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.pullTabText {
+  color: rgb(240, 95, 135);
+  font-weight: bold;
+  font-size: 1.05em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  user-select: none;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  padding: 6px 16px;
+  border-radius: 20px;
+  background: rgba(30, 5, 15, 0.6);
+  border: 1px solid rgba(240, 95, 135, 0.3);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  transition: background 0.2s ease;
+}
+
+.pullTabText:hover {
+  background: rgba(240, 95, 135, 0.2);
+  color: #ffffff;
+}
+
+/* Static arrow without bounce */
+.pullTabText span {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+/* Ensure the pull tab is also hidden while loading */
+.dashboard:not(.fade-in)>.pullTabContainer {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ===== Fade-in animation ===== */
 .dashboard {}
+
 .dashboard.fade-in {}
 
 .dashboard>.dashboardBackground>* {
@@ -127,6 +194,7 @@ button:hover {
   .heroContainer {
     flex-direction: column;
     padding: 10% 5%;
+    min-height: auto;
   }
 
   .heroLeft {
@@ -151,8 +219,24 @@ button:hover {
   #McGill {
     font-size: 1.8em;
   }
-  
+
   .stickersContainer {
     justify-content: center;
+  }
+
+  .pullTabContainer {
+    display: flex;
+    padding: 16px 0 10px 0;
+  }
+
+  .pullTabText {
+    font-size: 0.85em;
+    padding: 4px 12px;
+    border-radius: 16px;
+  }
+
+  .pullTabText span {
+    margin-left: 6px;
+    font-size: 0.85em;
   }
 }

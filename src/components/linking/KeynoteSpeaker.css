@@ -1,0 +1,271 @@
+/* Keynote Speakers Section */
+.keynote-speakers-section {
+  width: 100%;
+  padding: 30px 5% 60px 5%;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+}
+
+.keynote-speakers-container {
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+/* Section Header */
+.keynote-section-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.keynote-section-title {
+  color: rgb(244, 143, 177);
+  font-size: 2.6em;
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  letter-spacing: 0.5px;
+  line-height: 1.15;
+}
+
+.keynote-section-subtitle {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1.05em;
+  line-height: 1.6;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+/* Speakers List — one per row */
+.keynote-speakers-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Speaker Card — dark theme with schedule-style left accent border */
+.keynote-speaker-card {
+  background: rgba(26, 7, 18, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 8px;
+  border-left: 4px solid rgb(240, 95, 135);
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-right: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 30px 36px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  transition: background 0.2s ease;
+}
+
+/* No hover lift */
+.keynote-speaker-card:hover {
+  background: rgba(36, 10, 25, 0.85);
+  transform: none;
+}
+
+/* Card Header */
+.speaker-card-header {
+  display: flex;
+  align-items: center;
+  gap: 26px;
+}
+
+/* Avatar — enlarged image with circular crop, NO border outline, NO glow shadow */
+.speaker-avatar-wrapper {
+  width: 125px;
+  height: 125px;
+  min-width: 125px;
+  min-height: 125px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: none;
+  box-shadow: none;
+  background: #3e0c19;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.speaker-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 50%;
+  border: none;
+  box-shadow: none;
+  transition: opacity 0.25s ease-in-out;
+}
+
+.speaker-avatar-img.loading {
+  opacity: 0;
+}
+
+.speaker-avatar-img.loaded {
+  opacity: 1;
+}
+
+.speaker-avatar-placeholder,
+.speaker-avatar-fallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #4a0d1a 0%, #a0284e 55%, #6a133f 100%);
+  border-radius: 50%;
+  border: none;
+  box-shadow: none;
+}
+
+.speaker-initials-text {
+  color: #ffffff;
+  font-size: 2.2em;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Speaker Meta — height matches image (125px) so top & bottom text align with top & bottom of image */
+.speaker-meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 125px;
+  min-height: 125px;
+  flex: 1;
+  min-width: 0;
+  box-sizing: border-box;
+  padding: 2px 0;
+}
+
+.speaker-name {
+  color: #ffffff;
+  font-size: 2.1em;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.15;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+.speaker-company {
+  color: rgb(240, 95, 135);
+  font-size: 1.35em;
+  font-weight: 700;
+  margin: 0;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.2;
+}
+
+.speaker-role {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.1em;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.25;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+}
+
+/* Bio Content — light text for dark background */
+.speaker-bio {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1.02em;
+  line-height: 1.65;
+  font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  margin-top: 20px;
+}
+
+.speaker-bio-paragraph {
+  margin: 0 0 10px 0;
+}
+
+.speaker-bio-paragraph:last-child {
+  margin-bottom: 0;
+}
+
+.no-speakers-text {
+  color: rgba(255, 255, 255, 0.6);
+  text-align: center;
+  font-style: italic;
+  padding: 24px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+  .keynote-speakers-section {
+    padding: 20px 4% 50px 4%;
+  }
+
+  .keynote-section-title {
+    font-size: 2em;
+  }
+
+  .keynote-section-subtitle {
+    font-size: 0.98em;
+  }
+
+  .keynote-speaker-card {
+    padding: 22px 20px;
+  }
+
+  /* Keep image size the same on mobile as requested */
+  .speaker-avatar-wrapper {
+    width: 125px;
+    height: 125px;
+    min-width: 125px;
+    min-height: 125px;
+  }
+
+  .speaker-initials-text {
+    font-size: 2.2em;
+  }
+}
+
+@media (max-width: 640px) {
+  .speaker-card-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .speaker-meta {
+    height: auto;
+    min-height: auto;
+    justify-content: flex-start;
+    gap: 6px;
+  }
+
+  .speaker-name {
+    font-size: 1.7em;
+  }
+
+  .speaker-company {
+    font-size: 1.2em;
+  }
+
+  .speaker-role {
+    font-size: 1.02em;
+  }
+
+  /* Still keep image size the same on small mobile */
+  .speaker-avatar-wrapper {
+    width: 125px;
+    height: 125px;
+    min-width: 125px;
+    min-height: 125px;
+  }
+}

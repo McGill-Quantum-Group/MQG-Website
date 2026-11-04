@@ -12,24 +12,16 @@
         "date": "Nov. 11th",
         "items": [
           {
-            "time": "16:30 - 17:00",
-            "description": "Registration & Set-up"
+            "time": "18:00 - 19:15",
+            "description": "IBM Speaker"
           },
           {
-            "time": "17:00 - 17:30",
-            "description": "Environment Set-Up"
-          },
-          {
-            "time": "17:30 - 18:00",
+            "time": "19:15 - 20:15",
             "description": "[Workshop] Building a Quantum Circuit"
           },
           {
-            "time": "18:00 - 19:45",
+            "time": "20:15 - 21:30",
             "description": "Free Work Time"
-          },
-          {
-            "time": "19:45 - 21:00",
-            "description": "IBM Guest Speaker Presentation"
           }
         ]
       },
@@ -38,19 +30,11 @@
         "date": "Nov. 12th",
         "items": [
           {
-            "time": "16:30 - 17:00",
-            "description": "Registration & Set-up"
-          },
-          {
-            "time": "17:00 - 17:45",
-            "description": "Welcome Session"
-          },
-          {
-            "time": "17:45 - 18:45",
+            "time": "18:15 - 19:00",
             "description": "Research Presentation"
           },
           {
-            "time": "18:45 - 20:00",
+            "time": "19:00 - 20:15",
             "description": "[Workshop] Quantum Simulation"
           }
         ]
@@ -60,35 +44,35 @@
         "date": "Nov. 13th",
         "items": [
           {
-            "time": "16:30 - 17:00",
+            "time": "17:00 - 17:30",
             "description": "Registration & Set-up"
           },
           {
-            "time": "17:00 - 17:30",
+            "time": "17:30 - 18:00",
             "description": "PINQ"
           },
           {
-            "time": "17:30 - 18:00",
+            "time": "18:00 - 18:30",
             "description": "Mohammad ETS"
           },
           {
-            "time": "18:00 - 18:15",
+            "time": "18:30 - 18:45",
             "description": "Short Break + Short Q&A"
           },
           {
-            "time": "18:15 - 18:45",
+            "time": "18:45 - 19:15",
             "description": "MonarQ"
           },
           {
-            "time": "18:45 - 19:15",
+            "time": "19:15 - 19:45",
             "description": "ETS"
           },
           {
-            "time": "19:15 - 19:45",
+            "time": "19:45 - 20:15",
             "description": "Final Q&A"
           },
           {
-            "time": "19:45 - 20:00",
+            "time": "20:15 - 20:30",
             "description": "Hackathon Prompt Release"
           }
         ]
@@ -98,14 +82,54 @@
         "date": "Nov. 14th",
         "items": [
           {
-            "time": "9:00 - 5:30 pm",
+            "time": "9:00 - 17:30",
             "description": "Qiskit Hackathon!"
+          }
+        ]
+      },
+      {
+        "dayTitle": "Day 4 & 5: 48-Hour hackathon!",
+        "date": "Nov. 14th",
+        "items": [
+          {
+            "time": "9:00 - 17:00",
+            "description": "Come hack in person in our designated hackathon room! (Will most likely be announced over Discord)"
           }
         ]
       }
     ],
     "access": "Hybrid Event (In-person and Online)\nIn-person Venue: McGill Campus (TBD)",
     "contact": "quantumclub@susmcgill.ca",
+    "speakers": [
+      {
+        "name": "Matthieu Fortin-Deschênes",
+        "affiliation": "PINQ²",
+        "role": "Head of Quantum Solutions / Product Owner",
+        "bio": "Matthieu Fortin-Deschênes holds a PhD in engineering physics from Polytechnique Montréal and completed a postdoctoral fellowship in electrical engineering at Yale University. His research experience spans the development of new materials, both experimentally and computationally. He joined PINQ2 in 2023 as a product owner, where he develops and integrates quantum algorithms and hybrid algorithms for chemistry, materials science and computer-assisted materials discovery.",
+        "image": ""
+      },
+      {
+        "name": "Brian Ingmanson",
+        "affiliation": "IBM Quantum",
+        "role": "Engagement Lead, Quantum Innovation Centers in America",
+        "bio": "Brian Ingmanson is the Engagement Lead for Quantum Innovation Centers in America. He works with partners, educators, and students around the world to discover novel research and build skills in the field of quantum computing. He joined IBM in 2019 and helped to create global programs like the Qiskit Global Summer School and Qiskit Fall Fest. His accomplishments have earned him the IBM Outstanding Technical Achievement Award.\n\nPreviously Brian was a middle school science teacher, working at The Gilbert School in Winsted, CT for 6 years. He holds a B.S. and M.A. in Education from the University of Connecticut. Brian frequently presents on stage, and sometimes, plays the drums. Occasionally he’s known to do both at the same time.",
+        "image": "https://github.com/BrianIngmanson.png"
+      },
+      {
+        "name": "Mohammad El Mir",
+        "affiliation": "École de Technologie Supérieure (ÉTS)",
+        "role": "Master's Student & Quantum Researcher",
+        "bio": "Mohammad El Mir is a Master’s student in École de Technologie Supérieure (ÉTS) under the supervision of Claude Crépeau. His thesis work is about quantum identification in the context of a satellite: With only a small, re-usable key, how is Alice capable of identifying Bob and vice-versa?",
+        "image": ""
+      },
+      {
+        "name": "Denise Koch",
+        "affiliation": "Calcul Québec / Concordia University",
+        "role": "ARC Analyst & Quantum Computing Specialist",
+        "bio": "Denise Koch has over 20 years experience in the field of Advanced Research Computing (ARC) and joined the team of ARC Analysts at Concordia University in 2021, and has been specializing in quantum computing since 2023. Previously, Denise worked for 13 years as a Research Professional at the Centre for Research in Molecular Modeling (CERMM). She obtained a PhD in computational and theoretical chemistry from Concordia University in 2006, and then pursued a postdoctoral fellowship with James T. Hynes in molecular modeling at l’École normale supérieure, France.",
+        "image": ""
+      }
+    ],
     "organizers": [
       {
         "name": "Wenyu Sun",

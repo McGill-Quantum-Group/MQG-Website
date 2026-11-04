@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import "./Title.css";
-import qffTitleBackground from "../components/images/hero_blue_no_title.png"
-import qffPinkSticker from "../components/images/badge-pink.svg"
+import qffTitleBackground from "../components/images/hero_blue_no_title.png";
+import qffPinkSticker from "../components/images/badge-pink.svg";
 import QiskitFallFest2026 from "./linking/QiskitFallFest2026";
 import useScrollToBottom from "../listeners/scrollListener";
 import { supabase } from "./supabaseConfig";
 import EventModal from "./linking/EventModal";
 import AdvancedEventModal from "./linking/AdvancedEventModal";
 import advancedEvents from "./linking/advancedEvents.json";
+import KeynoteSpeakerContainer from "./linking/KeynoteSpeakerContainer";
 
 function Title(props) {
   const [startFade, setStartFade] = useState(false);
@@ -49,13 +49,16 @@ function Title(props) {
   }, []);
 
   const scrollToBottom = () => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    const el = document.getElementById("speakers");
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   const handleTellMeMore = async () => {
     setFetchingEvent(true);
     // Fetch the event from the calendar database using a flexible search
-    const { data, error } = await supabase
+    const { data } = await supabase
       .from("events-schedule")
       .select("*")
       .ilike("title", "%Qiskit Fall Fest%")
@@ -87,33 +90,48 @@ function Title(props) {
           allEventInfo={eventInfo}
         />
       )}
-      {showDetails ? <QiskitFallFest2026 /> : <div className={`dashboard ${startFade ? 'fade-in' : ''}`}>
-        <div className="dashboardBackground blurContainer">
-          <div className="heroContainer">
-            <div className="heroLeft">
-              <div className="titleBox">
-                <h1 id="QFFTitle">Qiskit Fall Fest 2026</h1>
-                <h2 id="McGill">@ McGill University</h2>
+      {showDetails ? (
+        <QiskitFallFest2026 />
+      ) : (
+        <div className={`dashboard ${startFade ? 'fade-in' : ''}`}>
+          <div className="dashboardBackground blurContainer">
+            <div className="heroContainer">
+              <div className="heroLeft">
+                <div className="titleBox">
+                  <h1 id="QFFTitle">Qiskit Fall Fest 2026</h1>
+                  <h2 id="McGill">@ McGill University</h2>
+                </div>
+                <button ref={bottomRef} onClick={handleTellMeMore} disabled={fetchingEvent}>
+                  {fetchingEvent ? "Loading..." : "Tell me more!"}
+                </button>
               </div>
-              <button ref={bottomRef} onClick={handleTellMeMore} disabled={fetchingEvent}>
-                {fetchingEvent ? "Loading..." : "Tell me more!"}
-              </button>
+              <div className="heroRight">
+                <img id="qffBackground" src={qffTitleBackground} alt="Qiskit Fall Fest 2026" />
+              </div>
             </div>
-            <div className="heroRight">
-              <img id="qffBackground" src={qffTitleBackground} alt="Qiskit Fall Fest 2026" />
+            <div className="bottomDescriptionContainer">
+              <p className="bottomDescription">
+                Qiskit Fall Fest is a global event hosted across universities and institutions across the world. This year, we are celebrating 10 years of quantum computing on the IBM cloud. Join us in November learning quantum computing together at the McGill Downtown Campus.
+              </p>
             </div>
+
+            {/* Horizontal line dividing the two */}
+            <hr className="speakersDivider" />
+
+            {/* Keynote Speakers Section underneath the main page */}
+            <KeynoteSpeakerContainer />
           </div>
-          <div className="bottomDescriptionContainer">
-            <p className="bottomDescription">
-              Qiskit Fall Fest is a global event hosted across universities and institutions across the world. This year, we are celebrating 10 years of quantum computing on the IBM cloud. Join us in November learning quantum computing together at the McGill Downtown Campus.
-            </p>
+
+          {/* Pull tab to scroll down to see more */}
+          <div className={`pullTabContainer ${isAtBottom ? 'hidden' : ''}`} onClick={scrollToBottom}>
+            <div className="pullTabText">
+              Scroll down to see more about our speakers... <span>&#x25BC;</span>
+            </div>
           </div>
         </div>
-      </div>
-      }
+      )}
     </>
   );
 }
-
 
 export default Title;

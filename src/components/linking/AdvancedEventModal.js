@@ -6,7 +6,7 @@ import EventImage from './EventImage';
 function AdvancedEventModal({ isOpen, onClose, eventData }) {
   if (!isOpen || !eventData) return null;
 
-  const { hero, about, schedule, access, contact, organizers, resources, pastImages } = eventData;
+  const { hero, about, schedule, access, contact, organizers, resources, pastImages, speakers } = eventData;
 
   return (
     <div className="adv-modal-overlay" onClick={onClose}>
@@ -56,6 +56,40 @@ function AdvancedEventModal({ isOpen, onClose, eventData }) {
                         </li>
                       ))}
                     </ul>
+                  </div>
+                ))}
+              </div>
+            </section>
+          )}
+
+          {/* Keynote Speakers Section */}
+          {speakers && speakers.length > 0 && (
+            <section className="adv-section">
+              <h3>Keynote & Featured Speakers</h3>
+              <p className="adv-speakers-hint">
+                Find more information on our main page for each speaker.
+              </p>
+              <div className="adv-schedule-grid">
+                {speakers.map((spk, idx) => (
+                  <div key={idx} className="adv-speaker-row">
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
+                      {spk.image ? (
+                        <img src={spk.image} alt={spk.name} className="adv-speaker-img" />
+                      ) : (
+                        <div className="adv-speaker-fallback-avatar">
+                          {spk.name.split(' ').map((n) => n[0]).join('').slice(0, 2).toUpperCase()}
+                        </div>
+                      )}
+                      <div>
+                        <h4 className="adv-speaker-name">{spk.name}</h4>
+                        {spk.affiliation && (
+                          <div className="adv-speaker-affiliation">{spk.affiliation}</div>
+                        )}
+                        {spk.role && (
+                          <div className="adv-speaker-role">{spk.role}</div>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 ))}
               </div>

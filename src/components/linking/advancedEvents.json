@@ -9,97 +9,141 @@
     "schedule": [
       {
         "dayTitle": "Day 0: Pre-Event Sessions",
-        "date": "Nov. 11th",
+        "date": "Wednesday, Nov. 11th",
         "items": [
           {
-            "time": "18:00 - 19:15",
-            "description": "IBM Speaker"
+            "time": "18:00 - 18:15",
+            "description": "Registration & Set-up"
           },
           {
-            "time": "19:15 - 20:15",
+            "time": "18:15 - 19:30",
+            "description": "IBM Speaker Brian"
+          },
+          {
+            "time": "19:30 - 20:20",
             "description": "[Workshop] Building a Quantum Circuit"
-          },
-          {
-            "time": "20:15 - 21:30",
-            "description": "Free Work Time"
           }
         ]
       },
       {
         "dayTitle": "Day 1",
-        "date": "Nov. 12th",
+        "date": "Thursday, Nov. 12th",
         "items": [
           {
-            "time": "18:15 - 19:00",
+            "time": "17:00 - 17:15",
+            "description": "Registration & Set-up"
+          },
+          {
+            "time": "17:15 - 18:00",
+            "description": "Welcome Session"
+          },
+          {
+            "time": "18:00 - 18:45",
             "description": "Research Presentation"
           },
           {
-            "time": "19:00 - 20:15",
+            "time": "18:45 - 20:00",
             "description": "[Workshop] Quantum Simulation"
           }
         ]
       },
       {
         "dayTitle": "Day 2",
-        "date": "Nov. 13th",
+        "date": "Friday, Nov. 13th",
         "items": [
           {
-            "time": "17:00 - 17:30",
+            "time": "17:00 - 17:15",
             "description": "Registration & Set-up"
           },
           {
-            "time": "17:30 - 18:00",
+            "time": "17:15 - 17:45",
             "description": "PINQ"
           },
           {
-            "time": "18:00 - 18:30",
+            "time": "17:45 - 18:15",
             "description": "Mohammad ETS"
           },
           {
-            "time": "18:30 - 18:45",
-            "description": "Short Break + Short Q&A"
+            "time": "18:15 - 18:30",
+            "description": "*Short Break + Short Q&A"
           },
           {
-            "time": "18:45 - 19:15",
+            "time": "18:30 - 19:00",
             "description": "MonarQ"
           },
           {
-            "time": "19:15 - 19:45",
+            "time": "19:00 - 19:30",
             "description": "ETS"
           },
           {
-            "time": "19:45 - 20:15",
+            "time": "19:30 - 20:00",
             "description": "Final Q&A"
           },
           {
-            "time": "20:15 - 20:30",
+            "time": "20:00 - 20:15",
             "description": "Hackathon Prompt Release"
           }
         ]
       },
       {
-        "dayTitle": "Day 3",
-        "date": "Nov. 14th",
+        "dayTitle": "Day 3: Hackathon",
+        "date": "Saturday, Nov. 14th",
         "items": [
           {
-            "time": "9:00 - 17:30",
-            "description": "Qiskit Hackathon!"
+            "time": "9:00 - 10:00",
+            "description": "Hackathon Begins"
+          },
+          {
+            "time": "10:00 - 12:00",
+            "description": "Hacking Away..."
+          },
+          {
+            "time": "12:00 - 13:00",
+            "description": "Lunch"
+          },
+          {
+            "time": "13:00 - 17:00",
+            "description": "*In-person Hacking"
+          },
+          {
+            "time": "17:00 - 9:00",
+            "description": "*Hacking at Home!"
+          },
+          {
+            "time": "",
+            "description": "(*Note: The room is booked from 9:00 to 17:00 EST on both days, but the hackathon continues. You may come in person at any time between these times to hack, and while it is not mandatory it is highly encouraged! Remember: it's 48 hours in total.)"
           }
         ]
       },
       {
-        "dayTitle": "Day 4 & 5: 48-Hour hackathon!",
-        "date": "Nov. 14th",
+        "dayTitle": "Day 4: Hackathon",
+        "date": "Sunday, Nov. 15th",
         "items": [
           {
-            "time": "9:00 - 17:00",
-            "description": "Come hack in person in our designated hackathon room! (Will most likely be announced over Discord)"
+            "time": "9:00 - 12:00",
+            "description": "*In-person Hacking"
+          },
+          {
+            "time": "12:00 - 13:00",
+            "description": "Lunch"
+          },
+          {
+            "time": "13:00 - 17:00",
+            "description": "*In-person Hacking"
+          },
+          {
+            "time": "17:00 - 9:00",
+            "description": "*Hacking at Home!"
+          },
+          {
+            "time": "",
+            "description": "(*Note: The room is booked from 9:00 to 17:00 EST on both days, but the hackathon continues. You may come in person at any time between these times to hack, and while it is not mandatory it is highly encouraged! Remember: it's 48 hours in total.)"
           }
         ]
       }
     ],
     "access": "Hybrid Event (In-person and Online)\nIn-person Venue: McGill Campus (TBD)",
-    "contact": "quantumclub@susmcgill.ca",
+    "contact": "quantumclub@susmcgill.ca\n(You can also contact any executive on our Discord at any point if you have questions/inquiries!)",
     "speakers": [
       {
         "name": "Matthieu Fortin-Deschênes",

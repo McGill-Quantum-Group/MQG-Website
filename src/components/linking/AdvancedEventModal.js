@@ -3,6 +3,65 @@ import { X, ExternalLink, MapPin, Mail } from 'lucide-react';
 import './AdvancedEventModal.css';
 import EventImage from './EventImage';
 
+function formatContactText(text) {
+  if (!text) return null;
+
+  // Regex matches:
+  // 1. Markdown link: [label](url)
+  // 2. Email address: name@domain.com
+  // 3. Raw URL: https?://...
+  // 4. Standalone "Discord" word
+  const regex = /\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)|([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})|(https?:\/\/[^\s]+)|\b(Discord)\b/g;
+
+  const parts = [];
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(text)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(text.substring(lastIndex, match.index));
+    }
+
+    if (match[1] && match[2]) {
+      // Markdown link [label](url)
+      parts.push(
+        <a key={match.index} href={match[2]} target="_blank" rel="noopener noreferrer">
+          {match[1]}
+        </a>
+      );
+    } else if (match[3]) {
+      // Email link
+      parts.push(
+        <a key={match.index} href={`mailto:${match[3]}`}>
+          {match[3]}
+        </a>
+      );
+    } else if (match[4]) {
+      // Raw URL
+      parts.push(
+        <a key={match.index} href={match[4]} target="_blank" rel="noopener noreferrer">
+          {match[4]}
+        </a>
+      );
+    } else if (match[5]) {
+      // Automatic Discord link
+      parts.push(
+        <a key={match.index} href="https://discord.gg/RcYtVGygDb" target="_blank" rel="noopener noreferrer">
+          Discord
+        </a>
+      );
+    }
+
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < text.length) {
+    parts.push(text.substring(lastIndex));
+  }
+
+  return parts;
+}
+
 function AdvancedEventModal({ isOpen, onClose, eventData }) {
   if (!isOpen || !eventData) return null;
 
@@ -50,8 +109,8 @@ function AdvancedEventModal({ isOpen, onClose, eventData }) {
                     <span className="adv-schedule-date">{day.date}</span>
                     <ul className="adv-schedule-list">
                       {day.items.map((item, i) => (
-                        <li key={i}>
-                          <span className="adv-time">{item.time}</span>
+                        <li key={i} className={!item.time ? "adv-schedule-note-item" : undefined}>
+                          {item.time ? <span className="adv-time">{item.time}</span> : null}
                           <span className="adv-desc">{item.description}</span>
                         </li>
                       ))}
@@ -115,7 +174,7 @@ function AdvancedEventModal({ isOpen, onClose, eventData }) {
               <h3>Contact</h3>
               <div className="adv-info-line">
                 <Mail size={20} color="black" style={{ marginTop: '2px', flexShrink: 0 }} />
-                <p>{contact}</p>
+                <p style={{ whiteSpace: 'pre-wrap' }}>{formatContactText(contact)}</p>
               </div>
             </section>
           )}

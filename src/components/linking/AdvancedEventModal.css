@@ -147,6 +147,12 @@
   font-size: 0.9em;
 }
 
+.adv-schedule-note-item .adv-desc {
+  color: #666;
+  font-size: 0.88em;
+  margin-top: 2px;
+}
+
 /* Access & Contact — each on their own line */
 .adv-info-line {
   display: flex;
@@ -159,6 +165,17 @@
   color: #333;
   font-size: 1em;
   line-height: 1.5;
+}
+
+.adv-info-line a {
+  color: rgb(240, 95, 135);
+  text-decoration: underline;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.adv-info-line a:hover {
+  color: rgb(215, 60, 105);
 }
 
 /* Organizer cards */

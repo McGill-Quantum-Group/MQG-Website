@@ -104,6 +104,9 @@ function Title(props) {
                 <button ref={bottomRef} onClick={handleTellMeMore} disabled={fetchingEvent}>
                   {fetchingEvent ? "Loading..." : "Tell me more!"}
                 </button>
+                <div className="titleBox">
+                  <h3 id="Discord">Join our <a style={{ color: "pink " }} href="https://discord.com/invite/RcYtVGygDb">Discord</a> for live updates during the event!</h3>
+                </div>
               </div>
               <div className="heroRight">
                 <img id="qffBackground" src={qffTitleBackground} alt="Qiskit Fall Fest 2026" />

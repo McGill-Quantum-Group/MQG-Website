@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import "./KeynoteSpeaker.css";
 
@@ -8,15 +9,16 @@ function getInitials(name) {
   return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
 }
 
+// eslint-disable-next-line no-unused-vars
 function KeynoteSpeaker({ speaker }) {
-  const [imgError, setImgError] = useState(false);
-  const [imgLoaded, setImgLoaded] = useState(false);
+  // const [imgError, setImgError] = useState(false);
+  // const [imgLoaded, setImgLoaded] = useState(false);
 
   if (!speaker) return null;
 
-  const { name, role, affiliation, bio, image } = speaker;
-  const initials = getInitials(name);
-  const hasImage = Boolean(image && image.trim() && !imgError);
+  const { name, role, affiliation, bio } = speaker;
+  // const initials = getInitials(name);
+  // const hasImage = Boolean(image && image.trim() && !imgError);
 
   // Split bio by double newlines into clean paragraphs
   const paragraphs = (bio || "")
